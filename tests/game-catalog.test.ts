@@ -11,17 +11,21 @@ describe("game catalog", () => {
     expect(source).toContain("clockReaderGame");
     expect(source).toContain("makeTargetGame");
     expect(source).toContain("pinyinMagicBattleGame");
+    expect(source).toContain("hanziRadicalBattleGame");
   });
 
   it("has shared learning data for the migrated games", () => {
     expect(englishWords.length).toBeGreaterThanOrEqual(30);
     expect(pinyinCards.length).toBeGreaterThanOrEqual(60);
-    expect(hanziWheelSets.length).toBeGreaterThanOrEqual(3);
+    expect(hanziWheelSets.length).toBe(9);
     expect(hanziWheelSets.every((set) => set.char.validPairs.length > 0 && set.word.validPairs.length > 0)).toBe(true);
   });
 
   it("keeps hanzi wheel options unique and referenced by every valid pair", () => {
     for (const set of hanziWheelSets) {
+      expect(set.char.validPairs.length, `${set.id} char count`).toBeGreaterThanOrEqual(18);
+      expect(set.word.validPairs.length, `${set.id} word count`).toBeGreaterThanOrEqual(12);
+
       for (const mode of [set.char, set.word]) {
         expect(new Set(mode.outerOptions).size, `${set.id} outer`).toBe(mode.outerOptions.length);
         expect(new Set(mode.innerOptions).size, `${set.id} inner`).toBe(mode.innerOptions.length);
@@ -29,8 +33,12 @@ describe("game catalog", () => {
         for (const pair of mode.validPairs) {
           expect(mode.outerOptions, `${set.id} ${pair.result} outer`).toContain(pair.outer);
           expect(mode.innerOptions, `${set.id} ${pair.result} inner`).toContain(pair.inner);
+          expect(pair.outer.trim(), `${set.id} outer`).toBeTruthy();
+          expect(pair.inner.trim(), `${set.id} inner`).toBeTruthy();
           expect(pair.result.length, `${set.id} result`).toBeGreaterThan(0);
+          expect(pair.pinyin.trim(), `${set.id} ${pair.result} pinyin`).toBeTruthy();
           expect(pair.words.length, `${set.id} words`).toBeGreaterThan(0);
+          expect(pair.words.every((word) => word.trim().length > 0), `${set.id} ${pair.result} words`).toBe(true);
         }
       }
     }

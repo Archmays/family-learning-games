@@ -11,6 +11,957 @@
   color: #25313b;
 }
 
+.hanzi-radical-battle {
+  position: relative;
+  display: grid;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(255, 207, 106, 0.38), transparent 24%),
+    linear-gradient(135deg, rgba(255, 253, 246, 0.96), rgba(232, 246, 255, 0.86)),
+    #f6f3e7;
+  color: #25313b;
+}
+
+.hanzi-radical-menu,
+.hanzi-radical-character-screen,
+.hanzi-radical-instructions {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 100%;
+  overflow: auto;
+  gap: 22px;
+  padding: 24px;
+}
+
+.hanzi-radical-title {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.hanzi-radical-title h2 {
+  margin: 0;
+  color: #25313b;
+  font-family: "Microsoft YaHei", "PingFang SC", serif;
+  font-size: clamp(42px, 8vw, 76px);
+  line-height: 1.02;
+}
+
+.hanzi-radical-title p {
+  margin: 0;
+  color: #6b3f15;
+  font-size: clamp(16px, 3vw, 24px);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.hanzi-radical-primary-action {
+  min-width: min(280px, 100%);
+  min-height: 64px;
+  border-color: #9d3d2f;
+  background: #f07f62;
+  color: #fffdf6;
+  font-size: 22px;
+  animation: hanzi-radical-bounce 2200ms ease-in-out infinite;
+}
+
+.hanzi-radical-menu-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hanzi-radical-screen-title {
+  max-width: 760px;
+  text-align: center;
+}
+
+.hanzi-radical-screen-title h2 {
+  margin: 0;
+  color: #1f5fa8;
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.12;
+}
+
+.hanzi-radical-screen-title p {
+  margin: 8px 0 0;
+  color: #4d5b63;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.hanzi-radical-character-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(920px, 100%);
+  gap: 14px;
+}
+
+.hanzi-radical-hero-card {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  min-height: 264px;
+  border: 3px solid #25313b;
+  border-radius: 8px;
+  background: #fffdf6;
+  box-shadow: 4px 6px 0 rgba(107, 79, 31, 0.14);
+  color: #25313b;
+  padding: 18px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hanzi-radical-hero-card:hover {
+  border-color: #c78a35;
+  transform: translateY(-2px);
+}
+
+.hanzi-radical-hero-card__icon {
+  display: grid;
+  width: 70px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 3px solid #c78a35;
+  border-radius: 50%;
+  background: #fff7d7;
+  font-size: 34px;
+}
+
+.hanzi-radical-hero-card h3 {
+  margin: 0;
+  color: #1f5fa8;
+  font-size: 24px;
+}
+
+.hanzi-radical-hero-card p {
+  margin: 0;
+  color: #4d5b63;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.hanzi-radical-hero-card__skill {
+  align-self: end;
+  min-height: 74px;
+  border: 2px solid #c78a35;
+  border-radius: 8px;
+  background: #fff7d7;
+  padding: 8px 10px;
+  color: #6b3f15;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.38;
+}
+
+.hanzi-radical-instructions {
+  align-content: start;
+}
+
+.hanzi-radical-instructions ul {
+  display: grid;
+  width: min(720px, 100%);
+  gap: 10px;
+  margin: 0;
+  border: 3px solid #25313b;
+  border-radius: 8px;
+  background: #fffdf6;
+  box-shadow: 4px 6px 0 rgba(107, 79, 31, 0.14);
+  padding: 20px 24px 20px 42px;
+  color: #4d5b63;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.hanzi-radical-game-shell {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hanzi-radical-game-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #25313b;
+  color: #fff7d7;
+  padding: 8px 12px;
+  box-shadow: 0 3px 0 rgba(37, 49, 59, 0.18);
+}
+
+.hanzi-radical-game-header__group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.hanzi-radical-label {
+  overflow: hidden;
+  color: #fff7d7;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hanzi-radical-header-button {
+  min-width: 42px;
+  min-height: 36px;
+  border: 2px solid rgba(255, 247, 215, 0.32);
+  border-radius: 8px;
+  background: rgba(255, 253, 246, 0.1);
+  color: #fff7d7;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.hanzi-radical-header-button:hover {
+  background: rgba(255, 253, 246, 0.2);
+}
+
+.hanzi-radical-game-header .ui-status {
+  min-width: 76px;
+  border-color: rgba(255, 247, 215, 0.45);
+  background: rgba(255, 253, 246, 0.12);
+  padding: 5px 8px;
+}
+
+.hanzi-radical-game-header .ui-status__label,
+.hanzi-radical-game-header .ui-status strong {
+  color: #fff7d7;
+}
+
+.hanzi-radical-game-header .ui-status strong {
+  font-size: 16px;
+}
+
+.hanzi-radical-monster-panel {
+  position: relative;
+  display: grid;
+  flex: 0 0 39%;
+  min-height: 210px;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 3px solid rgba(37, 49, 59, 0.12);
+  background:
+    radial-gradient(circle at 50% 78%, rgba(37, 49, 59, 0.12) 0 18%, transparent 19%),
+    linear-gradient(180deg, #fff7d7, #ffe7dd);
+  padding: 42px 14px 14px;
+}
+
+.hanzi-radical-turn-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: #fffdf6;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 900;
+  transform: translateX(-50%);
+}
+
+.hanzi-radical-turn-badge--player {
+  color: #1f5fa8;
+}
+
+.hanzi-radical-turn-badge--enemy {
+  color: #c23b22;
+  animation: hanzi-radical-pulse 700ms ease-in-out infinite;
+}
+
+.hanzi-radical-monster {
+  display: grid;
+  justify-items: center;
+  width: min(420px, 100%);
+  gap: 7px;
+  color: #25313b;
+  text-align: center;
+  transition: transform 260ms ease-out, filter 260ms ease-out;
+}
+
+.hanzi-radical-monster.is-hit {
+  animation: hanzi-radical-shake 300ms ease-out;
+  filter: saturate(1.2);
+}
+
+.hanzi-radical-monster.is-attacking {
+  transform: translateY(16px) scale(1.06);
+}
+
+.hanzi-radical-monster__body {
+  display: grid;
+  width: min(136px, 24vh);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 5px solid #25313b;
+  border-radius: 8px;
+  background: #25313b;
+  box-shadow: 4px 7px 0 rgba(107, 79, 31, 0.18);
+  font-size: clamp(54px, 12vh, 86px);
+  animation: hanzi-radical-bounce 2600ms ease-in-out infinite;
+}
+
+.hanzi-radical-monster__weakness {
+  border: 2px solid #c78a35;
+  border-radius: 999px;
+  background: #fffdf6;
+  padding: 3px 10px;
+  color: #6b3f15;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.hanzi-radical-monster strong {
+  color: #25313b;
+  font-size: 20px;
+}
+
+.hanzi-radical-monster span {
+  color: #4d5b63;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.hanzi-radical-health {
+  width: min(320px, 88%);
+}
+
+.hanzi-radical-health__track {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 18px;
+  border: 3px solid #25313b;
+  border-radius: 999px;
+  background: #fffdf6;
+}
+
+.hanzi-radical-health__track--player {
+  height: 8px;
+  margin-top: 5px;
+  border-width: 1px;
+}
+
+.hanzi-radical-health__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #8bd39e, #ffcf6a);
+  transition: width 220ms ease-out;
+}
+
+.hanzi-radical-player-panel {
+  display: grid;
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  overflow: hidden;
+  background: #fffdf6;
+}
+
+.hanzi-radical-player-status,
+.hanzi-radical-controls,
+.hanzi-radical-combo-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 2px solid rgba(37, 49, 59, 0.08);
+  padding: 8px 12px;
+}
+
+.hanzi-radical-player-hp,
+.hanzi-radical-shield {
+  min-width: 116px;
+  border: 2px solid #e7d8b4;
+  border-radius: 8px;
+  background: #fffdf6;
+  padding: 6px 9px;
+  color: #25313b;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.hanzi-radical-shield {
+  min-width: auto;
+  background: #e8f6ff;
+  color: #1f5fa8;
+}
+
+.hanzi-radical-mp {
+  display: flex;
+  gap: 4px;
+  min-width: 98px;
+}
+
+.hanzi-radical-mp span {
+  display: block;
+  width: 8px;
+  height: 18px;
+  border-radius: 3px;
+  background: #d7d0c2;
+}
+
+.hanzi-radical-mp span.is-filled {
+  background: #1f5fa8;
+}
+
+.hanzi-radical-controls {
+  justify-content: center;
+}
+
+.hanzi-radical-controls .ui-button {
+  min-height: 42px;
+  padding: 8px 12px;
+  font-size: 15px;
+}
+
+.hanzi-radical-skill-button {
+  border-color: #7b3fb2;
+  background: #d9c6ff;
+}
+
+.hanzi-radical-combo-panel {
+  min-height: 72px;
+  justify-content: center;
+  background: #fffbef;
+  color: #6b7a84;
+  font-weight: 900;
+}
+
+.hanzi-radical-structure-tags {
+  display: flex;
+  gap: 6px;
+}
+
+.hanzi-radical-structure-tags span,
+.hanzi-radical-structure {
+  border: 2px solid #c78a35;
+  border-radius: 999px;
+  background: #fff7d7;
+  color: #6b3f15;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.hanzi-radical-attack-preview {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  max-width: min(560px, 100%);
+  gap: 10px;
+  border: 3px solid #25313b;
+  border-radius: 999px;
+  background: #fffdf6;
+  box-shadow: 2px 4px 0 rgba(107, 79, 31, 0.13);
+  color: #25313b;
+  padding: 7px 14px;
+  cursor: pointer;
+  text-align: left;
+  animation: hanzi-radical-bounce 2100ms ease-in-out infinite;
+}
+
+.hanzi-radical-attack-preview--rare {
+  border-color: #7b3fb2;
+  background: #f4e8ff;
+}
+
+.hanzi-radical-attack-preview--epic {
+  border-color: #c78a35;
+  background: #fff7d7;
+}
+
+.hanzi-radical-attack-preview strong {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.hanzi-radical-attack-preview > span:last-child {
+  overflow: hidden;
+  color: #4d5b63;
+  font-size: 13px;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hanzi-radical-hand {
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 0;
+  overflow: auto;
+  gap: 10px;
+  padding: 12px;
+  background:
+    linear-gradient(180deg, rgba(232, 246, 255, 0.38), rgba(255, 253, 246, 0)),
+    #f6f3e7;
+}
+
+.hanzi-radical-card {
+  position: relative;
+  display: grid;
+  width: clamp(52px, 10vw, 68px);
+  height: clamp(70px, 14vw, 92px);
+  place-items: center;
+  border: 3px solid #d8c9a4;
+  border-radius: 8px;
+  background: #fffdf6;
+  box-shadow: 2px 4px 0 rgba(107, 79, 31, 0.14);
+  color: #25313b;
+  cursor: pointer;
+  transition: transform 160ms ease-out, border-color 160ms ease-out, background 160ms ease-out;
+}
+
+.hanzi-radical-card span {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  color: #8b8276;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.hanzi-radical-card strong {
+  font-family: "Microsoft YaHei", "PingFang SC", serif;
+  font-size: clamp(27px, 6vw, 38px);
+  line-height: 1;
+}
+
+.hanzi-radical-card:hover:not(:disabled) {
+  border-color: #c78a35;
+  transform: translateY(-3px);
+}
+
+.hanzi-radical-card.is-selected {
+  border-color: #c78a35;
+  background: #fff7d7;
+  transform: translateY(-9px);
+}
+
+.hanzi-radical-card.is-hinted {
+  border-color: #f5d04c;
+  background: #fffbe6;
+  animation: hanzi-radical-pulse 900ms ease-in-out infinite;
+}
+
+.hanzi-radical-card:disabled {
+  cursor: default;
+  opacity: 0.58;
+}
+
+.hanzi-radical-game-over {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  background: rgba(37, 49, 59, 0.88);
+  color: #fffdf6;
+  padding: 24px;
+  text-align: center;
+}
+
+.hanzi-radical-game-over h3 {
+  margin: 0;
+  color: #ffcf6a;
+  font-size: clamp(42px, 8vw, 70px);
+}
+
+.hanzi-radical-game-over p {
+  margin: 0;
+  color: #e7d8b4;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.hanzi-radical-game-over div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hanzi-radical-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  background: rgba(37, 49, 59, 0.78);
+  padding: 16px;
+}
+
+.hanzi-radical-modal__panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(720px, 100%);
+  max-height: min(80vh, 720px);
+  overflow: hidden;
+  border: 3px solid #25313b;
+  border-radius: 8px;
+  background: #fffdf6;
+  box-shadow: 6px 8px 0 rgba(37, 49, 59, 0.18);
+}
+
+.hanzi-radical-modal__panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 2px solid rgba(37, 49, 59, 0.12);
+  background: #fff7d7;
+  padding: 12px 14px;
+}
+
+.hanzi-radical-modal__panel h3 {
+  margin: 0;
+  color: #25313b;
+  font-size: 20px;
+}
+
+.hanzi-radical-modal__panel header button {
+  min-width: 40px;
+  min-height: 36px;
+  border: 2px solid #25313b;
+  border-radius: 8px;
+  background: #fffdf6;
+  color: #25313b;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.hanzi-radical-modal__body {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hanzi-radical-log-list {
+  display: grid;
+  align-content: start;
+  height: 100%;
+  overflow: auto;
+  gap: 8px;
+  background: #f6f3e7;
+  padding: 12px;
+}
+
+.hanzi-radical-log-list p {
+  margin: 32px 0 0;
+  color: #6b7a84;
+  text-align: center;
+  font-weight: 900;
+}
+
+.hanzi-radical-log {
+  border-left: 4px solid #6b7a84;
+  border-radius: 8px;
+  background: #fffdf6;
+  padding: 8px 10px;
+  color: #25313b;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.hanzi-radical-log--player {
+  border-left-color: #1f5fa8;
+  background: #e8f6ff;
+}
+
+.hanzi-radical-log--enemy {
+  border-left-color: #c23b22;
+  background: #ffe7dd;
+}
+
+.hanzi-radical-log span {
+  margin-right: 8px;
+  color: #6b7a84;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+}
+
+.hanzi-radical-dictionary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  height: 100%;
+  overflow: auto;
+  gap: 8px;
+  padding: 12px;
+}
+
+.hanzi-radical-dictionary-tile {
+  position: relative;
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid #ded6c6;
+  border-radius: 8px;
+  background: #f6f3e7;
+  color: #c4b9a4;
+}
+
+.hanzi-radical-dictionary-tile.is-unlocked {
+  border-color: #6b7a84;
+  background: #fffdf6;
+  color: #25313b;
+}
+
+.hanzi-radical-dictionary-tile--rare.is-unlocked {
+  border-color: #7b3fb2;
+  background: #f4e8ff;
+  color: #5d2f86;
+}
+
+.hanzi-radical-dictionary-tile--epic.is-unlocked {
+  border-color: #c78a35;
+  background: #fff7d7;
+  color: #6b3f15;
+}
+
+.hanzi-radical-dictionary-tile span {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.hanzi-radical-dictionary-tile strong {
+  font-size: 28px;
+}
+
+.hanzi-radical-floating-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.hanzi-radical-floating {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  color: #1f5fa8;
+  font-size: 24px;
+  font-weight: 900;
+  text-shadow: 0 2px 0 rgba(255, 253, 246, 0.9);
+  white-space: nowrap;
+  animation: hanzi-radical-float-up 900ms ease-out forwards;
+}
+
+.hanzi-radical-floating--damage {
+  color: #c23b22;
+  font-size: 38px;
+}
+
+.hanzi-radical-floating--heal {
+  color: #227a4f;
+  font-size: 34px;
+}
+
+.hanzi-radical-floating--block {
+  color: #6b7a84;
+}
+
+.hanzi-radical-floating--info,
+.hanzi-radical-floating--block {
+  top: 61%;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: rgba(255, 253, 246, 0.94);
+  padding: 5px 12px;
+  font-size: 22px;
+}
+
+.hanzi-radical-floating--achievement,
+.hanzi-radical-floating--epic {
+  color: #c78a35;
+  font-size: 44px;
+}
+
+.hanzi-radical-floating--rare {
+  color: #7b3fb2;
+}
+
+.hanzi-radical-floating--crit {
+  color: #7b3fb2;
+  font-size: 54px;
+}
+
+@keyframes hanzi-radical-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes hanzi-radical-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes hanzi-radical-shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes hanzi-radical-float-up {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.6);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -40px) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -110px) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hanzi-radical-primary-action,
+  .hanzi-radical-turn-badge--enemy,
+  .hanzi-radical-monster,
+  .hanzi-radical-monster__body,
+  .hanzi-radical-health__fill,
+  .hanzi-radical-attack-preview,
+  .hanzi-radical-card,
+  .hanzi-radical-card.is-hinted,
+  .hanzi-radical-floating {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hanzi-radical-character-grid {
+    grid-template-columns: 1fr;
+    width: min(420px, 100%);
+  }
+
+  .hanzi-radical-hero-card {
+    min-height: 0;
+  }
+
+  .hanzi-radical-game-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .hanzi-radical-game-header__group {
+    flex-wrap: wrap;
+  }
+
+  .hanzi-radical-monster-panel {
+    flex-basis: 36%;
+    min-height: 184px;
+    padding-top: 42px;
+  }
+
+  .hanzi-radical-monster__body {
+    width: min(112px, 20vh);
+  }
+
+  .hanzi-radical-monster strong {
+    font-size: 18px;
+  }
+
+  .hanzi-radical-player-status,
+  .hanzi-radical-controls,
+  .hanzi-radical-combo-panel {
+    justify-content: center;
+    padding: 7px 8px;
+  }
+
+  .hanzi-radical-controls .ui-button {
+    min-height: 38px;
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+
+  .hanzi-radical-combo-panel {
+    min-height: 64px;
+  }
+
+  .hanzi-radical-attack-preview {
+    grid-template-columns: auto auto;
+    border-radius: 8px;
+    padding: 7px 10px;
+  }
+
+  .hanzi-radical-attack-preview > span:last-child {
+    grid-column: 1 / -1;
+    white-space: normal;
+  }
+
+  .hanzi-radical-hand {
+    gap: 8px;
+    padding: 10px 8px 14px;
+  }
+
+  .hanzi-radical-card {
+    width: clamp(48px, 13vw, 60px);
+    height: clamp(66px, 18vw, 82px);
+  }
+
+  .hanzi-radical-dictionary {
+    grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+  }
+}
+
 * {
   box-sizing: border-box;
 }

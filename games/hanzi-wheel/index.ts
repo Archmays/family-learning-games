@@ -6,6 +6,7 @@ type HanziWheelMode = "char" | "word";
 type HanziWheelSide = "outer" | "inner";
 
 const WHEEL_SPIN_DURATION_MS = 1100;
+const MAX_VISIBLE_WHEEL_PAIRS = 12;
 
 interface HanziWheelSave {
   spins: number;
@@ -16,7 +17,7 @@ export const hanziWheelGame: GameDefinition = {
   title: "汉字大转盘",
   description: "转动内外两圈部件，观察它们能组成什么汉字或词语。",
   subject: "识字",
-  recommendedAge: "6-9 岁",
+  recommendedAge: "6-15 岁",
   playLabel: "开始转盘",
   mount(context: MountGameContext): MountedGame {
     return mountHanziWheel(context);
@@ -37,12 +38,14 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
   let innerRotation = 0;
   let timer: number | undefined;
   let animationFrame: number | undefined;
+  let visiblePairs = pickVisiblePairs(hanziWheelSets[setIndex][mode].validPairs, null);
   const save = context.storage.get<HanziWheelSave>("progress", { spins: 0 });
 
   const render = (): void => {
     clearElement(root);
     const activeSet = hanziWheelSets[setIndex];
-    const modeData = activeSet[mode];
+    const fullModeData = activeSet[mode];
+    const modeData = createVisibleModeData(visiblePairs);
     const hitPair = selected ?? pending;
 
     root.append(createHeader());
@@ -50,7 +53,12 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
 
     const status = document.createElement("div");
     status.className = "learning-game__stats";
-    status.append(createStatus("已转动", save.spins), createStatus("当前", activeSet.label), createStatus("模式", mode === "char" ? "组字" : "组词"));
+    status.append(
+      createStatus("已转动", save.spins),
+      createStatus("当前", activeSet.label),
+      createStatus("模式", mode === "char" ? "组字" : "组词"),
+      createStatus("题库", `${fullModeData.validPairs.length} 组`)
+    );
 
     const board = document.createElement("div");
     board.className = "hanzi-wheel-board hanzi-wheel-board--round";
@@ -93,6 +101,7 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
         setIndex = index;
         selected = null;
         pending = null;
+        refreshVisiblePairs();
         render();
       }, {
         className: index === setIndex ? "ui-button learning-game__pill is-active" : "ui-button learning-game__pill"
@@ -116,6 +125,7 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
     mode = nextMode;
     selected = null;
     pending = null;
+    refreshVisiblePairs();
     render();
   };
 
@@ -126,11 +136,12 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
 
     const modeData = hanziWheelSets[setIndex][mode];
     const nextPair = modeData.validPairs[Math.floor(Math.random() * modeData.validPairs.length)];
-    const outerIndex = modeData.outerOptions.indexOf(nextPair.outer);
-    const innerIndex = modeData.innerOptions.indexOf(nextPair.inner);
+    const visibleModeData = refreshVisiblePairs(nextPair);
+    const outerIndex = visibleModeData.outerOptions.indexOf(nextPair.outer);
+    const innerIndex = visibleModeData.innerOptions.indexOf(nextPair.inner);
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const nextOuterRotation = outerRotation + 720 + getRotationForIndex(outerIndex, modeData.outerOptions.length);
-    const nextInnerRotation = innerRotation - 720 - getRotationForIndex(innerIndex, modeData.innerOptions.length);
+    const nextOuterRotation = outerRotation + 720 + getRotationForIndex(outerIndex, visibleModeData.outerOptions.length);
+    const nextInnerRotation = innerRotation - 720 - getRotationForIndex(innerIndex, visibleModeData.innerOptions.length);
 
     clearSpinTimers();
     pending = nextPair;
@@ -189,6 +200,11 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
     setWheelRotation(wheel, rotation);
   };
 
+  const refreshVisiblePairs = (requiredPair: HanziWheelPair | null = null): HanziWheelModeData => {
+    visiblePairs = pickVisiblePairs(hanziWheelSets[setIndex][mode].validPairs, requiredPair);
+    return createVisibleModeData(visiblePairs);
+  };
+
   const createCenter = (modeData: HanziWheelModeData): HTMLElement => {
     const center = document.createElement("div");
     center.className = "hanzi-wheel-center";
@@ -211,6 +227,49 @@ function mountHanziWheel(context: MountGameContext): MountedGame {
       root.remove();
     }
   };
+}
+
+function pickVisiblePairs(validPairs: HanziWheelPair[], requiredPair: HanziWheelPair | null): HanziWheelPair[] {
+  if (validPairs.length <= MAX_VISIBLE_WHEEL_PAIRS) {
+    return [...validPairs];
+  }
+
+  const picked: HanziWheelPair[] = [];
+  if (requiredPair) {
+    picked.push(requiredPair);
+  }
+
+  for (const pair of shufflePairs(validPairs)) {
+    if (picked.length >= MAX_VISIBLE_WHEEL_PAIRS) {
+      break;
+    }
+    if (pair !== requiredPair) {
+      picked.push(pair);
+    }
+  }
+
+  return picked;
+}
+
+function shufflePairs(pairs: HanziWheelPair[]): HanziWheelPair[] {
+  const shuffled = [...pairs];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function createVisibleModeData(validPairs: HanziWheelPair[]): HanziWheelModeData {
+  return {
+    outerOptions: unique(validPairs.map((pair) => pair.outer)),
+    innerOptions: unique(validPairs.map((pair) => pair.inner)),
+    validPairs
+  };
+}
+
+function unique(items: string[]): string[] {
+  return [...new Set(items)];
 }
 
 function createWheel(label: string, options: string[], selectedOption: string | null, rotation: number, variant: HanziWheelSide): HTMLElement {
