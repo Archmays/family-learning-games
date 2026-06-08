@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { calculate, formatCardValue } from "../games/make-target";
 import { getMultiplicationGridCount, getNumberBlockCount } from "../games/multiplication-adventure";
+import { getPinyinDamage, PINYIN_MONSTER_ROSTER } from "../games/pinyin-magic-battle";
 
 describe("learning game optimizations", () => {
   it("counts multiplication visual blocks from the displayed factors", () => {
@@ -14,6 +15,25 @@ describe("learning game optimizations", () => {
     expect(calculate(8, 2, "÷")).toBe(4);
     expect(calculate(5, 2, "÷")).toBeNull();
     expect(formatCardValue(7)).toBe("7");
+  });
+
+  it("keeps pinyin battle damage as child-friendly integers", () => {
+    expect(getPinyinDamage(0)).toBe(10);
+    expect(getPinyinDamage(1)).toBe(10);
+    expect(getPinyinDamage(1.8)).toBe(10);
+    expect(getPinyinDamage(2)).toBe(11);
+    expect(getPinyinDamage(3)).toBe(12);
+    expect(getPinyinDamage(11)).toBe(20);
+    expect(getPinyinDamage(18)).toBe(20);
+  });
+
+  it("keeps a varied pinyin monster roster for hero trials", () => {
+    const ids = new Set(PINYIN_MONSTER_ROSTER.map((monster) => monster.id));
+    const names = new Set(PINYIN_MONSTER_ROSTER.map((monster) => monster.name));
+
+    expect(PINYIN_MONSTER_ROSTER.length).toBeGreaterThanOrEqual(12);
+    expect(ids.size).toBe(PINYIN_MONSTER_ROSTER.length);
+    expect(names.size).toBe(PINYIN_MONSTER_ROSTER.length);
   });
 
   it("keeps child-mode return buttons in the migrated games", () => {
@@ -36,6 +56,26 @@ describe("learning game optimizations", () => {
     expect(english).toContain("revealWord = true");
     expect(english).toContain("900");
     expect(pinyin).toContain("revealAnswer = true");
-    expect(pinyin).toContain("is-popped");
+    expect(pinyin).toContain("pinyin-monster-health");
+  });
+
+  it("keeps pinyin hero trial focused on monster battles", () => {
+    const pinyin = readFileSync("games/pinyin-magic-battle/index.ts", "utf8");
+    const styles = readFileSync("src/styles.css", "utf8");
+    const readme = readFileSync("games/pinyin-magic-battle/README.md", "utf8");
+
+    expect(pinyin).toContain("INITIAL_MONSTER_HP = 50");
+    expect(pinyin).toContain("MONSTER_HP_STEP = 10");
+    expect(pinyin).toContain("勇者试炼");
+    expect(pinyin).toContain("pinyin-game--battle");
+    expect(pinyin).toContain("pinyin-monster-stage");
+    expect(pinyin).toContain("PINYIN_MONSTER_ROSTER");
+    expect(pinyin).not.toContain("气" + "球魔法战");
+    expect(pinyin).not.toContain("气" + "球魔法站");
+    expect(pinyin).not.toContain("pinyin-game--" + "bal" + "loon");
+    expect(pinyin).not.toContain("pinyin-" + "bal" + "loon");
+    expect(styles).not.toContain("pinyin-" + "bal" + "loon");
+    expect(readme).not.toContain("气" + "球");
+    expect(styles).toContain("pinyin-damage-pop");
   });
 });
