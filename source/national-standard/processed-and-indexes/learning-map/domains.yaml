@@ -1,0 +1,57 @@
+domains:
+  - domain_id: language
+    title: 语言与表达
+    includes:
+      - listening
+      - speaking
+      - reading
+      - writing
+      - multilingual-awareness
+  - domain_id: mathematics
+    title: 数学与逻辑
+    includes:
+      - number
+      - pattern
+      - geometry
+      - measurement
+      - data
+      - reasoning
+  - domain_id: science
+    title: 科学与证据
+    includes:
+      - observation
+      - models
+      - experiments
+      - systems
+      - explanation
+  - domain_id: humanities
+    title: 人文、历史与社会
+    includes:
+      - time
+      - place
+      - evidence
+      - perspective
+      - public-reasoning
+  - domain_id: arts
+    title: 艺术与审美表达
+    includes:
+      - visual-arts
+      - music
+      - drama
+      - design
+  - domain_id: social-emotional
+    title: 社会情绪与关系
+    includes:
+      - self-awareness
+      - self-management
+      - social-awareness
+      - relationship-skills
+      - responsible-decision-making
+  - domain_id: inquiry
+    title: 探究、项目与 AI 素养
+    includes:
+      - question-definition
+      - evidence-judgment
+      - design-and-revision
+      - collaboration
+      - ai-literacy

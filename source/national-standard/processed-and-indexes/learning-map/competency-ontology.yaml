@@ -1,0 +1,25 @@
+competencies:
+  - competency_id: comp.observe
+    title: 观察
+    description: 通过感官、工具或记录注意对象、现象和差异。
+  - competency_id: comp.question
+    title: 提问
+    description: 提出可观察、可比较、可验证或可讨论的问题。
+  - competency_id: comp.explain
+    title: 解释
+    description: 用证据、模型、例子或因果链说明为什么。
+  - competency_id: comp.model
+    title: 建模
+    description: 用图、表、规则、材料或符号表达结构和关系。
+  - competency_id: comp.revise
+    title: 修正
+    description: 根据反馈或证据改变做法、解释或作品。
+  - competency_id: comp.communicate
+    title: 表达与沟通
+    description: 面向真实听众讲述、写作、展示、回应和协商。
+  - competency_id: comp.evidence
+    title: 证据判断
+    description: 区分事实、推断、观点、来源、可靠性和不确定性。
+  - competency_id: comp.ai-literacy
+    title: AI 时代判断
+    description: 理解工具边界、核查 AI 输出并保留人的责任。

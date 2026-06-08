@@ -1,0 +1,464 @@
+﻿schema_version: math_lower_primary_canonical_objectives_v1
+created: "2026-05-27"
+status: active
+scope: Maths lower-primary family canonical objectives for MPH Maths 1A to 1B standards integration
+principles:
+  - "Objectives synthesize MPH Maths 1A, MPH Maths 1B, selected standards, and Learning Operations evidence rules."
+  - "They are not textbook chapter titles or progress claims."
+  - "Every objective requires direct observation before it can support a progress ledger entry."
+maths_lower_primary:
+  - canonical_objective_id: co.math.lp.count-represent-to-100.001
+    title: Count and represent numbers to 100.
+    domain: number_sense
+    child_friendly_goal: "I can count, read, write, and show numbers up to 100."
+    parent_observable_behavior: "Child counts objects, reads or writes numerals/words, and represents quantities using objects, drawings, number cards, or base-ten materials."
+    related_learning_map_objectives:
+      - obj.math.foundation.number-sense.count-to-10.001
+      - obj.math.foundation.number-sense.count-to-40.001
+      - obj.math.foundation.number-sense.count-to-100.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/math-concepts.jsonl
+      - source/mph-maths-processed/mph-maths-1b/math-concepts.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.whole-numbers.lower.001
+      - std.ibpyp.math.phase1.number.lower.001
+      - std.ibpyp.math.phase2.number.lower.001
+    evidence_examples:
+      - "Counts a set accurately and states the total."
+      - "Builds or draws a two-digit number and connects it to the numeral."
+    not_evidence:
+      - "Textbook has a numbers-to-100 chapter."
+      - "Child recites a sequence but cannot count objects or show quantity."
+    suitable_activity_types:
+      - counting_collection
+      - numeral_match
+      - base_ten_build
+    progress_observation_notes: "Record range, representation used, and whether errors came from sequence, one-to-one correspondence, or symbol reading."
+    foundation_connection: "Extends 1A counting to 20 into 1B numbers to 40 and 100."
+
+  - canonical_objective_id: co.math.lp.place-value-tens-ones.001
+    title: Explain tens and ones in two-digit numbers.
+    domain: place_value
+    child_friendly_goal: "I can show how a two-digit number is made of tens and ones."
+    parent_observable_behavior: "Child builds, draws, decomposes, or explains two-digit numbers with tens-and-ones language."
+    related_learning_map_objectives:
+      - obj.math.foundation.place-value.tens-ones-to-20.001
+      - obj.math.foundation.place-value.tens-ones-to-40.001
+      - obj.math.foundation.place-value.tens-ones-to-100.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter7-numbers-to-20/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter10-numbers-to-40/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter17-numbers-to-100/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.whole-numbers.lower.001
+      - std.ibpyp.math.phase2.number.lower.001
+      - std.china2022.math.stage1.number-operations.lower.001
+    evidence_examples:
+      - "Builds 34 as three tens and four ones."
+      - "Explains why 40 has four tens and zero ones."
+    not_evidence:
+      - "Writing the numeral correctly without showing place-value meaning."
+      - "Counting by ones only when tens-and-ones explanation is requested."
+    suitable_activity_types:
+      - base_ten_build
+      - place_value_chart
+      - number_decomposition
+    progress_observation_notes: "Watch for digit reversal, treating digits as separate numbers, or confusing count sequence with place value."
+    foundation_connection: "Builds from 1A teen numbers to 1B tens-and-ones within 40 and 100."
+
+  - canonical_objective_id: co.math.lp.compare-order-patterns.001
+    title: Compare, order, and continue lower-primary number patterns.
+    domain: comparison_patterns
+    child_friendly_goal: "I can compare numbers, put them in order, and see simple patterns."
+    parent_observable_behavior: "Child compares, orders, or continues number sequences using quantity, place value, number path, or pattern reasoning."
+    related_learning_map_objectives:
+      - obj.math.foundation.comparison.compare-order-to-20.001
+      - obj.math.foundation.comparison.compare-order-to-40.001
+      - obj.math.foundation.number-sense.count-to-100.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/math-concepts.jsonl
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter10-numbers-to-40/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter17-numbers-to-100/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.whole-numbers.lower.001
+      - std.ibpyp.math.phase2.pattern-function.lower.001
+      - std.china2022.math.stage1.number-operations.lower.001
+    evidence_examples:
+      - "Orders three two-digit numbers and explains the comparison."
+      - "Completes a number pattern and states the rule in simple language."
+    not_evidence:
+      - "Guessing greater or smaller from visual spacing alone."
+      - "Completing a memorized number sequence without explaining the change."
+    suitable_activity_types:
+      - number_card_ordering
+      - number_line_task
+      - pattern_completion
+    progress_observation_notes: "Record comparison strategy and whether the child used quantity, tens, ones, or memorized order."
+    foundation_connection: "Extends 1A comparing sets and teen numbers into 1B comparing/order numbers to 40 and 100."
+
+  - canonical_objective_id: co.math.lp.part-whole-number-bonds.001
+    title: Use part-whole thinking and number bonds.
+    domain: number_bonds
+    child_friendly_goal: "I can show how parts make a whole and how a whole can split into parts."
+    parent_observable_behavior: "Child composes, decomposes, or checks a whole using objects, number bonds, drawings, or equations."
+    related_learning_map_objectives:
+      - obj.math.foundation.number-bonds.part-whole.001
+      - obj.math.foundation.number-bonds.complete-within-10.001
+      - obj.math.foundation.number-bonds.compose-target.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter2-number-bonds/
+      - source/mph-maths-processed/mph-maths-1b/skill-items.jsonl
+    related_standard_outcomes:
+      - std.ibpyp.math.phase1.number.lower.001
+      - std.china2022.math.stage1.number-operations.lower.001
+      - std.sgmoe.math.primary.problem-solving.lower.001
+    evidence_examples:
+      - "Splits a set into two parts and recombines to check the whole."
+      - "Uses a number bond to explain a calculation strategy."
+    not_evidence:
+      - "Filling a bond template by copying."
+      - "Knowing number-bond vocabulary without showing a part-whole relationship."
+    suitable_activity_types:
+      - counters_split
+      - number_bond_model
+      - equation_match
+    progress_observation_notes: "Record whether part-whole thinking supports later operations or remains isolated template completion."
+    foundation_connection: "Keeps the 1A number-bond base active for 1B two-digit operations."
+
+  - canonical_objective_id: co.math.lp.add-subtract-within-20.001
+    title: Add and subtract within 20 with a visible strategy.
+    domain: operations
+    child_friendly_goal: "I can add or subtract small numbers and show how I know."
+    parent_observable_behavior: "Child solves addition or subtraction within 20 using objects, drawings, number path, number bonds, mental strategy, or equation."
+    related_learning_map_objectives:
+      - obj.math.foundation.operations.add-within-10.001
+      - obj.math.foundation.operations.subtract-within-10.001
+      - obj.math.foundation.operations.add-subtract-within-20.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter3-addition-within-10/
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter4-subtraction-within-10/
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter8-addition-and-subtraction-within-20/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.add-subtract.lower.001
+      - std.ibpyp.math.phase1.number.lower.001
+      - std.china2022.math.stage1.number-operations.lower.001
+    evidence_examples:
+      - "Counts on or counts back and explains the steps."
+      - "Uses a number bond or ten-frame to solve and check."
+    not_evidence:
+      - "Only giving an answer with no visible strategy when strategy is the target."
+      - "Parent corrects each step and child repeats."
+    suitable_activity_types:
+      - ten_frame_task
+      - number_path_task
+      - story_equation_match
+    progress_observation_notes: "Record exact strategy, accuracy, and whether the child can check the result."
+    foundation_connection: "Consolidates 1A operations before extending into 1B two-digit work."
+
+  - canonical_objective_id: co.math.lp.two-digit-add-subtract.001
+    title: Add and subtract two-digit numbers with place-value support.
+    domain: operations
+    child_friendly_goal: "I can add or subtract two-digit numbers by thinking about tens and ones."
+    parent_observable_behavior: "Child solves addition or subtraction within 40 or 100 using base-ten blocks, drawings, place-value chart, number line, or written layout."
+    related_learning_map_objectives:
+      - obj.math.foundation.operations.add-within-40.001
+      - obj.math.foundation.operations.subtract-within-40.001
+      - obj.math.foundation.operations.add-within-100.001
+      - obj.math.foundation.operations.subtract-within-100.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter11-addition-within-40/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter12-subtraction-within-40/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter18-addition-within-100/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter19-subtraction-within-100/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.add-subtract.lower.001
+      - std.ibpyp.math.phase2.number.lower.001
+      - std.china2022.math.stage1.number-operations.lower.001
+    evidence_examples:
+      - "Solves a two-digit addition task using tens and ones and explains the representation."
+      - "Subtracts with drawings or blocks and checks the result."
+    not_evidence:
+      - "Copying a written algorithm without place-value meaning."
+      - "A correct answer where adult directed every exchange or regroup step."
+    suitable_activity_types:
+      - base_ten_operation
+      - place_value_chart
+      - number_line_strategy
+    progress_observation_notes: "Record number range, representation, regrouping status, and strategy explanation."
+    foundation_connection: "Extends 1A within-20 operations into 1B within-40 and within-100 operations."
+
+  - canonical_objective_id: co.math.lp.regrouping-readiness.001
+    title: Explain regrouping as exchanging tens and ones.
+    domain: place_value_operations
+    child_friendly_goal: "I can trade ones for a ten or a ten for ones when a problem needs it."
+    parent_observable_behavior: "Child models regrouping in addition or subtraction as an exchange of ten ones and one ten using objects, drawings, or place-value notation."
+    related_learning_map_objectives:
+      - obj.math.foundation.operations.add-with-regrouping.001
+      - obj.math.foundation.operations.subtract-with-regrouping.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter11-addition-within-40/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter12-subtraction-within-40/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter18-addition-within-100/
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter19-subtraction-within-100/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.add-subtract.lower.001
+      - std.ibpyp.math.phase2.number.lower.001
+    evidence_examples:
+      - "Shows 10 ones becoming 1 ten during addition."
+      - "Trades 1 ten for 10 ones to make subtraction possible and explains why."
+    not_evidence:
+      - "Writing carry or borrow marks without explaining exchange."
+      - "Adult performs the regrouping while child writes the answer."
+    suitable_activity_types:
+      - base_ten_exchange
+      - regrouping_story
+      - error_check
+    progress_observation_notes: "Treat regrouping as readiness until the child can explain the exchange with limited prompting."
+    foundation_connection: "Depends on 1A part-whole and 1B tens-and-ones understanding."
+
+  - canonical_objective_id: co.math.lp.word-problems-representation.001
+    title: Represent and solve simple word problems.
+    domain: problem_solving
+    child_friendly_goal: "I can show a math story with objects, a drawing, or an equation."
+    parent_observable_behavior: "Child identifies the situation, represents quantities, chooses an operation or strategy, solves, and explains the answer in context."
+    related_learning_map_objectives:
+      - obj.math.foundation.problem-solving.addition-stories.001
+      - obj.math.foundation.problem-solving.mixed-add-subtract-stories.001
+      - obj.math.foundation.operations.multiplication-stories.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/exercise-items.jsonl
+      - source/mph-maths-processed/mph-maths-1b/exercise-items.jsonl
+    related_standard_outcomes:
+      - std.china2022.math.stage1.quantity-problem.lower.001
+      - std.sgmoe.math.primary.problem-solving.lower.001
+      - std.ibpyp.math.phase2.number.lower.001
+    evidence_examples:
+      - "Draws a joining or taking-away story and matches it to an equation."
+      - "Explains what the answer means in the story."
+    not_evidence:
+      - "Choosing addition or subtraction only by spotting a keyword."
+      - "Solving isolated arithmetic when the target is story representation."
+    suitable_activity_types:
+      - story_model
+      - equation_match
+      - explain_answer
+    progress_observation_notes: "Record story type, model, operation choice, and whether answer meaning was explained."
+    foundation_connection: "Links 1A story problems to 1B two-digit, equal-group, time, and money contexts."
+
+  - canonical_objective_id: co.math.lp.multiplication-equal-groups.001
+    title: Model multiplication as equal groups or repeated addition.
+    domain: multiplication
+    child_friendly_goal: "I can make equal groups and find how many there are altogether."
+    parent_observable_behavior: "Child builds equal groups, skip-counts or repeatedly adds, and connects the model to a multiplication expression or explanation."
+    related_learning_map_objectives:
+      - obj.math.foundation.operations.multiplication-equal-groups.001
+      - obj.math.foundation.operations.multiplication-stories.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter14-multiplication/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.multiplication-division.lower.001
+      - std.china2022.math.stage1.number-operations.lower.001
+      - std.ibpyp.math.phase2.pattern-function.lower.001
+    evidence_examples:
+      - "Builds 4 groups of 3 and finds the total by repeated addition or skip counting."
+      - "Matches an equal-group picture to a multiplication expression with support."
+    not_evidence:
+      - "Memorizing a multiplication fact with no equal-group meaning."
+      - "Counting scattered objects without showing equal groups."
+    suitable_activity_types:
+      - equal_group_build
+      - repeated_addition_match
+      - array_or_group_picture
+    progress_observation_notes: "Record whether the child understands equal groups before expecting symbolic fluency."
+    foundation_connection: "Extends 1A addition and patterns into 1B equal-group multiplication."
+
+  - canonical_objective_id: co.math.lp.division-sharing-grouping.001
+    title: Model division as sharing or grouping.
+    domain: division
+    child_friendly_goal: "I can share fairly or make equal groups and explain what happened."
+    parent_observable_behavior: "Child shares a quantity equally among groups or forms equal groups from a total, then checks fairness and explains leftovers if present."
+    related_learning_map_objectives:
+      - obj.math.foundation.operations.division-sharing.001
+      - obj.math.foundation.operations.division-equal-groups.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter15-division/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.multiplication-division.lower.001
+      - std.china2022.math.stage1.quantity-problem.lower.001
+    evidence_examples:
+      - "Shares 12 objects among 3 plates and checks each plate has the same number."
+      - "Finds how many groups of 4 can be made from a set."
+    not_evidence:
+      - "Using a division symbol without showing sharing or grouping meaning."
+      - "Adult arranges groups and child only counts the result."
+    suitable_activity_types:
+      - equal_sharing
+      - grouping_task
+      - fairness_check
+    progress_observation_notes: "Record whether the task was sharing or grouping and whether fairness was checked."
+    foundation_connection: "Builds on 1A part-whole and repeated counting; 1B introduces equal sharing and grouping."
+
+  - canonical_objective_id: co.math.lp.data-picture-graphs.001
+    title: Read and answer questions from picture graphs.
+    domain: data
+    child_friendly_goal: "I can read a picture graph and answer questions with evidence."
+    parent_observable_behavior: "Child reads categories and quantities in a picture graph, compares categories, and answers simple questions using the graph."
+    related_learning_map_objectives:
+      - obj.math.foundation.data.picture-graphs.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter13-picture-graphs/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.picture-graphs.lower.001
+      - std.ibpyp.math.phase2.data.lower.001
+      - std.china2022.math.stage1.geometry-measure-data.lower.001
+    evidence_examples:
+      - "Finds which category has more or fewer and points to the graph evidence."
+      - "Answers how many or how many more from a simple picture graph."
+    not_evidence:
+      - "Guessing from picture size rather than graph counts."
+      - "Collecting data but not reading or interpreting it."
+    suitable_activity_types:
+      - picture_graph_reading
+      - category_compare
+      - graph_question
+    progress_observation_notes: "Record whether each picture represents one item and whether the child uses graph evidence."
+    foundation_connection: "Extends 1A sorting and pattern work into 1B data representation."
+
+  - canonical_objective_id: co.math.lp.length-measurement.001
+    title: Compare and measure length carefully.
+    domain: measurement
+    child_friendly_goal: "I can compare or measure length and explain how I did it fairly."
+    parent_observable_behavior: "Child aligns objects, uses non-standard or standard units, avoids gaps and overlaps, and states length or comparison accurately."
+    related_learning_map_objectives:
+      - obj.math.foundation.measurement.compare-lengths.001
+      - obj.math.foundation.measurement.use-start-line.001
+      - obj.math.foundation.measurement.nonstandard-length.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter9-length/
+      - source/mph-maths-processed/mph-maths-1b/math-concepts.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.length.lower.001
+      - std.ibpyp.math.phase2.measurement.lower.001
+      - std.china2022.math.stage1.geometry-measure-data.lower.001
+    evidence_examples:
+      - "Compares two lengths from a common start line."
+      - "Measures with equal units and states the length with unit."
+    not_evidence:
+      - "Comparing by visual impression when starts are uneven."
+      - "Using a ruler-like tool without aligning zero or unit start."
+    suitable_activity_types:
+      - object_compare
+      - unit_measure
+      - measurement_error_check
+    progress_observation_notes: "Record whether units were non-standard or standard and whether measurement was fair."
+    foundation_connection: "Keeps the 1A length foundation available for later lower-primary standard measurement."
+
+  - canonical_objective_id: co.math.lp.time-routines.001
+    title: Tell and use time in familiar routines.
+    domain: time
+    child_friendly_goal: "I can read simple clock times and connect them to daily routines."
+    parent_observable_behavior: "Child matches, reads, draws, or explains time to the hour or half hour, and optionally compares short durations in familiar routines."
+    related_learning_map_objectives:
+      - obj.math.foundation.time.hour-half-hour.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter16-time/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.time.lower.001
+      - std.ibpyp.math.phase2.measurement.lower.001
+    evidence_examples:
+      - "Matches 7:30 to a routine and reads it as half past seven."
+      - "Draws clock hands for an hour or half-hour time with support."
+    not_evidence:
+      - "Reciting a time phrase without matching a clock or routine."
+      - "Adult positions the clock hands and child only labels them."
+    suitable_activity_types:
+      - clock_match
+      - routine_schedule
+      - draw_clock_hands
+    progress_observation_notes: "Record whether target is hour, half hour, or extension beyond MPH 1B."
+    foundation_connection: "Introduced in 1B as a new applied measurement domain."
+
+  - canonical_objective_id: co.math.lp.money-values.001
+    title: Recognize, count, and compare simple money amounts.
+    domain: money
+    child_friendly_goal: "I can name money values and count simple amounts."
+    parent_observable_behavior: "Child recognizes denominations, counts simple amounts, compares values, or solves a simple add/subtract money situation with concrete or picture support."
+    related_learning_map_objectives:
+      - obj.math.foundation.money.recognize-coins-notes.001
+      - obj.math.foundation.money.count-amounts.001
+      - obj.math.foundation.money.add-subtract-amounts.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1b/chapters/chapter20-money/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.money.lower.001
+      - std.ibpyp.math.phase2.measurement.lower.001
+      - std.china2022.math.stage1.quantity-problem.lower.001
+    evidence_examples:
+      - "Counts a small set of coin or note pictures and states the amount."
+      - "Compares two amounts and explains which has greater value."
+    not_evidence:
+      - "Naming a coin by appearance without knowing its value."
+      - "Completing money arithmetic without recognizing denominations."
+    suitable_activity_types:
+      - money_sort
+      - shop_context
+      - amount_compare
+    progress_observation_notes: "Record currency/denominations used and whether value or mere appearance drove the answer."
+    foundation_connection: "New in 1B; depends on counting, place value, and addition/subtraction foundations."
+
+  - canonical_objective_id: co.math.lp.shape-space-patterns.001
+    title: Describe shapes, space, and simple patterns.
+    domain: geometry_patterns
+    child_friendly_goal: "I can name shapes, describe where things are, and continue simple patterns."
+    parent_observable_behavior: "Child identifies, describes, sorts, composes, positions, or patterns with shapes and spatial language."
+    related_learning_map_objectives:
+      - obj.math.foundation.geometry.name-2d-shapes.001
+      - obj.math.foundation.geometry.describe-shape-attributes.001
+      - obj.math.foundation.position.spatial-language.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter5-shapes-and-patterns/
+      - source/mph-maths-processed/mph-maths-1a-pilot/units/chapter6-ordinal-numbers-and-position/
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.shapes.lower.001
+      - std.ibpyp.math.phase2.shape-space.lower.001
+      - std.china2022.math.stage1.geometry-measure-data.lower.001
+    evidence_examples:
+      - "Sorts shapes by an attribute and explains the rule."
+      - "Uses position language or composes a figure from shapes."
+    not_evidence:
+      - "Naming only one familiar shape in one orientation."
+      - "Repeating a position word without using a reference point."
+    suitable_activity_types:
+      - shape_sort
+      - position_game
+      - pattern_with_shapes
+    progress_observation_notes: "Mostly 1A continuity; include in lower-primary crosswalk so geometry and spatial language remain indexed."
+    foundation_connection: "1A provides the main processed assets; 1B does not deepen this area much."
+
+  - canonical_objective_id: co.math.lp.math-explanation-habits.001
+    title: Explain mathematical thinking with representations.
+    domain: mathematical_reasoning
+    child_friendly_goal: "I can show my math thinking and explain why it makes sense."
+    parent_observable_behavior: "Child uses objects, drawing, equation, graph, clock, money, or words to explain a strategy, check an answer, or respond to a math idea."
+    related_learning_map_objectives:
+      - obj.math.foundation.problem-solving.explain-strategy.001
+      - obj.math.foundation.reasoning.choose-strategy-within-20.001
+    related_textbook_assets:
+      - source/mph-maths-processed/mph-maths-1a-pilot/progress-observation-points.jsonl
+      - source/mph-maths-processed/mph-maths-1b/progress-observation-points.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.math.primary.problem-solving.lower.001
+      - std.china2022.math.stage1.communication-attitude.lower.001
+      - std.china2022.math.stage1.quantity-problem.lower.001
+    evidence_examples:
+      - "Explains a strategy using objects or a drawing."
+      - "Finds and fixes an error after checking with a representation."
+    not_evidence:
+      - "Only stating the answer."
+      - "Parent supplies the explanation and child repeats it."
+    suitable_activity_types:
+      - strategy_talk
+      - error_analysis
+      - representation_choice
+    progress_observation_notes: "Use this across domains; record exact representation and child explanation."
+    foundation_connection: "Carries 1A reasoning habits into the broader 1B range."

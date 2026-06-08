@@ -1,0 +1,101 @@
+source_id: "src.national-standard.national-standard"
+source_name: "national-standard"
+source_family: "national_standard"
+source_path: "source/national-standard/"
+processed_path: "source/national-standard-processed/"
+processed_date: "2026-06-06"
+generation_readiness_status: "generation_candidate"
+processed_status: "processed_layer_present"
+raw_file_count: 383
+processed_file_count: 5
+allowed_as_source_basis_for_design_brief: true
+allowed_for_direct_child_facing_release: false
+allowed_for_progress_evidence: false
+review_required_before_child_specific_use: true
+standards_alignment_status: "document_level_plus_partial_outcomes"
+readiness_scope:
+  - "standards_alignment"
+  - "objective_mapping"
+allowed_design_uses:
+  - "curriculum_alignment"
+  - "objective_selection"
+  - "evidence_planning"
+quality_flags:
+  - "not_child_facing"
+  - "outcome_extraction_pending"
+  - "not_progress_evidence"
+blocked_uses:
+  - "direct_final_release"
+  - "progress_ledger_evidence"
+  - "baseline_readiness_update_from_source_only"
+recommended_next_action: "Run scoped outcome extraction and crosswalk by subject before claiming standards alignment."
+evidence_boundary: "Source readiness is not child progress evidence or baseline readiness evidence."
+# material-route-ready:start
+material_route_status: "material_route_ready"
+source_review_status: "reviewed_source_basis_available_for_alignment"
+standards_alignment_depth: "priority_outcome_seeds_created_full_extraction_pending"
+sample_generation_status: "family_dry_run_template_created"
+visible_page_number_format_for_future_materials: "XX/YY"
+target_children:
+  - "not_child_facing"
+  - "parent_planning"
+target_age_band:
+  - "family_curriculum_planning"
+language_level_policy: "parent-facing Chinese; child wording decided by downstream material"
+resolve_raz_at_generation_time: true
+default_raz_level_if_missing: "aa"
+raz_resolution_source_order:
+  - "learning/family/members/<child_id>/profile.yaml: english_reading_level.highest_recorded_raz_level"
+  - "learning/family/members/<child_id>/learning-profile.md"
+  - "learning/family/learning-material-language-policy.yaml: default_raz_level_if_missing"
+current_raz_audit_snapshot:
+  xiaoyi:
+    resolved_raz_level: "aa"
+    source_type: "profile_yaml"
+    source_path: "learning/family/members/xiaoyi/profile.yaml"
+    audit_note: "Snapshot only; regenerate materials must resolve live from the child profile."
+  xiaoyue:
+    resolved_raz_level: "B"
+    source_type: "profile_yaml"
+    source_path: "learning/family/members/xiaoyue/profile.yaml"
+    audit_note: "Snapshot only; regenerate materials must resolve live from the child profile."
+required_gate_checks:
+  - "read_child_profile_and_goals"
+  - "read_recent_progress_without_overclaim"
+  - "source_selection_review"
+  - "education_expert_design_gate"
+  - "usage_mode_classification"
+  - "bilingual_raz_policy"
+  - "date_context_check"
+  - "source_refs_required"
+  - "parent_observation_record_plan"
+  - "education_expert_release_review"
+  - "outcome_level_alignment_check"
+material_routes:
+  - material_type: "objective_alignment"
+    usageMode: "print"
+    usageReason: "objective_alignment can be reviewed, discussed, written on, or used as a parent-guided paper route."
+    requires3D: false
+    interactiveLibrary: null
+    gate: "education_expert_design_gate_then_release_review"
+  - material_type: "assessment_observation_plan"
+    usageMode: "print"
+    usageReason: "assessment_observation_plan can be reviewed, discussed, written on, or used as a parent-guided paper route."
+    requires3D: false
+    interactiveLibrary: null
+    gate: "education_expert_design_gate_then_release_review"
+  - material_type: "scope_sequence"
+    usageMode: "print"
+    usageReason: "scope_sequence can be reviewed, discussed, written on, or used as a parent-guided paper route."
+    requires3D: false
+    interactiveLibrary: null
+    gate: "education_expert_design_gate_then_release_review"
+  - material_type: "parent_brief"
+    usageMode: "print"
+    usageReason: "parent_brief can be reviewed, discussed, written on, or used as a parent-guided paper route."
+    requires3D: false
+    interactiveLibrary: null
+    gate: "education_expert_design_gate_then_release_review"
+blocked_or_review_needed_reason: "No route blocker; release still requires material-specific design and review gates."
+material_route_boundary: "Route-ready means eligible for a gated design brief, not direct release or progress evidence."
+# material-route-ready:end

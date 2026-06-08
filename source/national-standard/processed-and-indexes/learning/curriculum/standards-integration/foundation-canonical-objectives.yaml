@@ -1,0 +1,439 @@
+schema_version: foundation_canonical_objectives_v1
+created: "2026-05-27"
+status: pilot
+scope: English and Maths Foundation for family education use
+principles:
+  - "Canonical objectives combine textbook data, selected standards, Xiaoyue's baseline readiness, and Learning Operations evidence rules."
+  - "They are not copied from one standard and are not progress claims."
+  - "Each objective must be observable before it can support a progress ledger entry."
+english:
+  - canonical_objective_id: fco.eng.listen-respond.001
+    title: Respond to short English prompts in context.
+    domain: listening
+    child_friendly_goal: "I can listen and show what I understand."
+    parent_observable_behavior: "Child follows a short prompt, points to an item, performs an action, or answers with a word while support level is recorded."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.listening-action.001
+    related_standard_outcomes:
+      - std.china2022.eng.prep.listen-speak.001
+      - std.sgmoe.eng.primary.lower.listening-viewing.001
+      - std.ibpyp.lang.phase1.oral.001
+    evidence_examples:
+      - "Follows two familiar action prompts with gesture support recorded."
+      - "Points to the correct picture after hearing a familiar word or question."
+    not_evidence:
+      - "Parent says the child knows the unit."
+      - "Child completes after the parent translates every instruction."
+    suitable_activity_types:
+      - diagnostic_task
+      - practice_activity
+      - game
+    progress_observation_notes: "Record exact prompt language and whether response was independent, partially prompted, or fully supported."
+  - canonical_objective_id: fco.eng.name-vocabulary.001
+    title: Recognize and name familiar Foundation vocabulary.
+    domain: vocabulary
+    child_friendly_goal: "I can name familiar people, places, objects, animals, food, routines, and clothes."
+    parent_observable_behavior: "Child points, repeats, names, sorts, or uses topic words with pictures or real objects."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.vocabulary-in-context.001
+      - obj.lang.english.foundation.speaking-naming.001
+    related_standard_outcomes:
+      - std.china2022.eng.level1.vocabulary-grammar.001
+      - std.ibpyp.lang.phase1.oral.001
+      - std.sgmoe.eng.primary.lower.grammar-vocab.001
+    evidence_examples:
+      - "Names three home-room words from pictures."
+      - "Sorts food or clothing words and says at least one word independently."
+    not_evidence:
+      - "Only seeing a word in CPP Foundation."
+      - "Repeating after parent without showing meaning."
+    suitable_activity_types:
+      - diagnostic_task
+      - card_sort
+      - picture_talk
+    progress_observation_notes: "Distinguish recognition, repetition, prompted naming, and independent naming."
+  - canonical_objective_id: fco.eng.use-sentence-frame.001
+    title: Use a short English sentence frame with support.
+    domain: sentence_patterns
+    child_friendly_goal: "I can say a short sentence and change one word to make it mine."
+    parent_observable_behavior: "Child repeats or adapts a target frame such as identity, location, ability, preference, routine, or wearing statement."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.sentence-patterns.001
+    related_standard_outcomes:
+      - std.china2022.eng.level1.vocabulary-grammar.001
+      - std.sgmoe.eng.primary.lower.grammar-vocab.001
+    evidence_examples:
+      - "Uses `I like...` with one chosen food."
+      - "Uses `It is in/on/under...` with a picture."
+    not_evidence:
+      - "Memorized chorus response without individual output."
+      - "Workbook grammar item with no oral or meaning evidence."
+    suitable_activity_types:
+      - diagnostic_task
+      - practice_activity
+      - oral_frame
+    progress_observation_notes: "Record whether the child only repeated or substituted vocabulary meaningfully."
+  - canonical_objective_id: fco.eng.identity-and-self.001
+    title: Give a simple self or familiar-person description.
+    domain: speaking
+    child_friendly_goal: "I can say something simple about myself or someone I know."
+    parent_observable_behavior: "Child gives a safe name, age, appearance, feeling, or identity phrase with support."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.identity-description.001
+    related_standard_outcomes:
+      - std.ibpyp.lang.phase1.oral.001
+      - std.china2022.eng.level1.language-skills.001
+    evidence_examples:
+      - "Says a private-safe self-description using a frame."
+      - "Describes a picture character using `He/She is...`."
+    not_evidence:
+      - "Sharing private information not needed for learning."
+      - "Parent-supplied sentence copied without understanding."
+    suitable_activity_types:
+      - picture_talk
+      - show_and_tell
+    progress_observation_notes: "Avoid unnecessary sensitive personal details."
+  - canonical_objective_id: fco.eng.preferences-and-feelings.001
+    title: Express a simple preference or feeling.
+    domain: speaking_interaction
+    child_friendly_goal: "I can say what I like or how I feel."
+    parent_observable_behavior: "Child says likes/dislikes, wants/does not want, or a simple feeling with a familiar object or picture."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.preference-expression.001
+    related_standard_outcomes:
+      - std.china2022.eng.level1.language-skills.001
+      - std.ibpyp.lang.phase1.oral.001
+    evidence_examples:
+      - "Answers `Do you like...?` with a supported phrase."
+      - "Chooses a food card and says a like/dislike statement."
+    not_evidence:
+      - "Parent guesses the preference."
+      - "Child nods without clear language or recorded context."
+    suitable_activity_types:
+      - conversation
+      - card_choice
+    progress_observation_notes: "Record exact wording and whether choice was child-led."
+  - canonical_objective_id: fco.eng.routine-and-action.001
+    title: Describe a simple action, ability, or routine.
+    domain: speaking
+    child_friendly_goal: "I can say what someone can do or does every day."
+    parent_observable_behavior: "Child uses familiar action or routine vocabulary in a short statement or sequence."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.ability-expression.001
+      - obj.lang.english.foundation.routine-description.001
+    related_standard_outcomes:
+      - std.china2022.eng.level1.language-skills.001
+      - std.sgmoe.eng.primary.lower.speaking-representing.001
+    evidence_examples:
+      - "Says one `I can...` statement with a movement card."
+      - "Orders two routine pictures and says one routine phrase."
+    not_evidence:
+      - "Acting out movement without language when the target is language production."
+      - "Perfect repetition with no choice or meaning."
+    suitable_activity_types:
+      - role_play
+      - sequencing
+    progress_observation_notes: "Keep action understanding separate from English sentence production."
+  - canonical_objective_id: fco.eng.interaction-turntaking.001
+    title: Participate in a short English interaction.
+    domain: interaction
+    child_friendly_goal: "I can take turns and answer or ask a simple question."
+    parent_observable_behavior: "Child answers, asks, requests repetition, agrees/disagrees, or gives feedback in a short routine."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.interaction-oracy.001
+    related_standard_outcomes:
+      - std.sgmoe.eng.primary.lower.speaking-representing.001
+      - std.china2022.eng.level1.learning-strategy.001
+    evidence_examples:
+      - "Uses a repair phrase after not understanding."
+      - "Takes turns in a two-card question-answer exchange."
+    not_evidence:
+      - "Adult carries all turns."
+      - "Child participates only through nonverbal compliance when oral interaction is the target."
+    suitable_activity_types:
+      - diagnostic_task
+      - game
+      - role_play
+    progress_observation_notes: "Record the number of turns and prompt level."
+  - canonical_objective_id: fco.eng.visual-reading-readiness.001
+    title: Connect pictures, labels, and simple print to meaning.
+    domain: reading_readiness
+    child_friendly_goal: "I can use pictures and labels to understand words."
+    parent_observable_behavior: "Child matches a picture to a label, recognizes a familiar sign, or explains a visual clue."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.reading-readiness.001
+    related_standard_outcomes:
+      - std.ibpyp.lang.phase1.visual.001
+      - std.sgmoe.eng.primary.lower.reading-viewing.001
+    evidence_examples:
+      - "Matches three known labels to pictures."
+      - "Uses a picture clue to choose a familiar word."
+    not_evidence:
+      - "Memorized location of a page answer."
+      - "Independent reading fluency claim from matching only."
+    suitable_activity_types:
+      - matching
+      - picture_walk
+    progress_observation_notes: "Do not infer independent reading from visual matching."
+  - canonical_objective_id: fco.eng.writing-readiness.001
+    title: Produce a supported written or visual language trace.
+    domain: writing_readiness
+    child_friendly_goal: "I can copy, trace, label, or draw to show my English idea."
+    parent_observable_behavior: "Child traces, copies, labels, completes, or combines drawing and words with clear support level."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.writing-readiness.001
+    related_standard_outcomes:
+      - std.sgmoe.eng.primary.lower.writing-representing.001
+      - std.ibpyp.lang.phase1.reading-writing.001
+    evidence_examples:
+      - "Copies a familiar word under a picture."
+      - "Labels one drawn object with adult model recorded."
+    not_evidence:
+      - "Adult writes for the child."
+      - "Finished worksheet without noting support."
+    suitable_activity_types:
+      - portfolio
+      - labeling
+      - worksheet
+    progress_observation_notes: "Keep fine-motor support separate from language understanding."
+  - canonical_objective_id: fco.eng.home-practice-evidence.001
+    title: Leave a clear English learning evidence trace.
+    domain: home_practice_evidence
+    child_friendly_goal: "I can show one small piece of what I learned."
+    parent_observable_behavior: "Child produces a short oral sample, labeled drawing, sorted card set, workbook response, or parent observation note."
+    related_textbook_objectives:
+      - obj.lang.english.foundation.home-practice-evidence.001
+      - obj.lang.english.foundation.learning-habits.001
+    related_standard_outcomes:
+      - std.china2022.eng.level1.learning-strategy.001
+    evidence_examples:
+      - "Parent records exact child phrase and prompt."
+      - "Child keeps a small labeled drawing in portfolio."
+    not_evidence:
+      - "A plan to practice later."
+      - "AI-generated activity output."
+    suitable_activity_types:
+      - observation_record
+      - portfolio
+    progress_observation_notes: "This objective supports evidence quality rather than a textbook unit."
+maths:
+  - canonical_objective_id: fco.math.count-represent.001
+    title: Count and represent small quantities accurately.
+    domain: number_sense
+    child_friendly_goal: "I can count objects and show the number."
+    parent_observable_behavior: "Child counts objects one by one, states the total, and matches or writes/chooses the numeral."
+    related_textbook_objectives:
+      - obj.math.foundation.number-sense.count-to-10.001
+      - obj.math.foundation.representation.quantity-symbol-word.001
+      - obj.math.foundation.number-sense.count-to-20.001
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.whole-numbers.001
+      - std.ibpyp.math.phase1.number.001
+      - std.china2022.math.stage1.number-operations.001
+    evidence_examples:
+      - "Counts eight real objects and says the final total."
+      - "Matches a group to the numeral."
+    not_evidence:
+      - "Reciting numbers without objects."
+      - "Counting after adult points to each object."
+    suitable_activity_types:
+      - diagnostic_task
+      - manipulatives_activity
+    progress_observation_notes: "Record skipped, repeated, or double-counted objects."
+  - canonical_objective_id: fco.math.compare-order.001
+    title: Compare and order small numbers or sets.
+    domain: comparison
+    child_friendly_goal: "I can tell which has more, fewer, same, greater, or smaller."
+    parent_observable_behavior: "Child compares two sets or number cards by matching, counting, or explaining quantity."
+    related_textbook_objectives:
+      - obj.math.foundation.comparison.compare-sets.001
+      - obj.math.foundation.comparison.greater-smaller.001
+      - obj.math.foundation.comparison.compare-order-to-20.001
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.whole-numbers.001
+      - std.china2022.math.stage1.number-operations.001
+    evidence_examples:
+      - "Uses matching to show which set has more."
+      - "Orders three number cards within the observed range."
+    not_evidence:
+      - "Choosing the visually larger spread without checking quantity."
+      - "Ordering only from memorized sequence without comparison."
+    suitable_activity_types:
+      - quick_check
+      - sorting_activity
+    progress_observation_notes: "Record the strategy, not just the answer."
+  - canonical_objective_id: fco.math.part-whole.001
+    title: Show a whole as parts and recombine the parts.
+    domain: number_bonds
+    child_friendly_goal: "I can split a number into parts and put the parts back together."
+    parent_observable_behavior: "Child uses counters or a number-bond diagram to show whole and parts."
+    related_textbook_objectives:
+      - obj.math.foundation.number-bonds.part-whole.001
+      - obj.math.foundation.number-bonds.complete-within-10.001
+      - obj.math.foundation.number-bonds.compose-target.001
+    related_standard_outcomes:
+      - std.ibpyp.math.phase1.number.001
+      - std.sgmoe.math.p1.whole-numbers.001
+    evidence_examples:
+      - "Splits 7 counters into 3 and 4 and says the whole."
+      - "Finds a missing part with counters."
+    not_evidence:
+      - "Completing a memorized number bond without showing parts."
+      - "Adult tells the missing number."
+    suitable_activity_types:
+      - manipulatives_activity
+      - diagnostic_task
+    progress_observation_notes: "Watch for confusion between part and whole."
+  - canonical_objective_id: fco.math.add-subtract.001
+    title: Add or subtract with concrete meaning.
+    domain: operations
+    child_friendly_goal: "I can join or take away and explain what happened."
+    parent_observable_behavior: "Child combines or removes objects, counts the result, and connects the action to addition or subtraction language."
+    related_textbook_objectives:
+      - obj.math.foundation.operations.add-within-10.001
+      - obj.math.foundation.operations.subtract-within-10.001
+      - obj.math.foundation.operations.add-subtract-within-20.001
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.add-subtract.001
+      - std.ibpyp.math.phase1.number.001
+      - std.china2022.math.stage1.number-operations.001
+    evidence_examples:
+      - "Combines two groups and states the total."
+      - "Takes away objects and states how many are left."
+    not_evidence:
+      - "Answer only, with no link to action or representation."
+      - "Keyword guessing in a story problem."
+    suitable_activity_types:
+      - real_life_math
+      - manipulatives_activity
+    progress_observation_notes: "Record operation meaning and strategy separately."
+  - canonical_objective_id: fco.math.operation-choice-story.001
+    title: Choose an operation for a simple story.
+    domain: problem_solving
+    child_friendly_goal: "I can decide whether a story is joining or taking away."
+    parent_observable_behavior: "Child acts out or models a story and chooses addition or subtraction with a reason."
+    related_textbook_objectives:
+      - obj.math.foundation.problem-solving.addition-stories.001
+      - obj.math.foundation.problem-solving.mixed-add-subtract-stories.001
+    related_standard_outcomes:
+      - std.sgmoe.math.primary.problem-solving-assessment.001
+      - std.china2022.math.stage1.quantity-problem.001
+    evidence_examples:
+      - "Acts out a story with counters before choosing the operation."
+      - "Explains why there are more or fewer at the end."
+    not_evidence:
+      - "Selecting operation because of a keyword only."
+      - "Solving after adult tells the operation."
+    suitable_activity_types:
+      - math_talk
+      - real_life_math
+    progress_observation_notes: "Use low-stakes stories; record if language comprehension affected performance."
+  - canonical_objective_id: fco.math.shape-attributes.001
+    title: Name, sort, and describe simple shapes.
+    domain: geometry
+    child_friendly_goal: "I can name shapes and tell how I know."
+    parent_observable_behavior: "Child names, sorts, or describes 2D shapes using attributes such as sides, corners, straight, or curved."
+    related_textbook_objectives:
+      - obj.math.foundation.geometry.name-2d-shapes.001
+      - obj.math.foundation.geometry.describe-shape-attributes.001
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.measure-geometry.001
+      - std.ibpyp.math.phase1.shape-space.001
+      - std.china2022.math.stage1.geometry-measure-data.001
+    evidence_examples:
+      - "Sorts mixed shapes by attribute."
+      - "Names a triangle in a new orientation."
+    not_evidence:
+      - "Recognizing only one familiar worksheet icon."
+      - "Repeating shape names without sorting or pointing evidence."
+    suitable_activity_types:
+      - sorting_activity
+      - drawing_activity
+    progress_observation_notes: "Check varied size and orientation before claiming stability."
+  - canonical_objective_id: fco.math.patterns.001
+    title: Identify, extend, or create a simple pattern.
+    domain: patterns
+    child_friendly_goal: "I can find what repeats and continue the pattern."
+    parent_observable_behavior: "Child extends or creates a repeating/growing pattern and explains the rule in words, gestures, or objects."
+    related_textbook_objectives:
+      - obj.math.foundation.patterns.shape-patterns.001
+      - obj.math.foundation.patterns.number-patterns-within-10.001
+    related_standard_outcomes:
+      - std.ibpyp.math.phase1.pattern-data.001
+      - std.china2022.math.stage1.quantity-problem.001
+    evidence_examples:
+      - "Continues an AB shape pattern and says the repeat unit."
+      - "Finds the next item in a one-more number pattern."
+    not_evidence:
+      - "Random continuation that happens to match once."
+      - "Copying a full pattern without identifying the rule."
+    suitable_activity_types:
+      - pattern_finding
+      - game
+    progress_observation_notes: "Record whether the child can explain the rule."
+  - canonical_objective_id: fco.math.position-language.001
+    title: Use ordinal and position language with a reference point.
+    domain: position
+    child_friendly_goal: "I can say where something is in a line or space."
+    parent_observable_behavior: "Child uses first/second/third, before/after/between, left/right/next to, or similar position words with a clear reference."
+    related_textbook_objectives:
+      - obj.math.foundation.position.ordinal-numbers.001
+      - obj.math.foundation.position.spatial-language.001
+      - obj.math.foundation.position.relative-position.001
+    related_standard_outcomes:
+      - std.sgmoe.math.p1.whole-numbers.001
+      - std.ibpyp.math.phase1.shape-space.001
+    evidence_examples:
+      - "Finds the third object from a stated start point."
+      - "Places a toy between two objects after hearing the prompt."
+    not_evidence:
+      - "Correct by chance when start point is unclear."
+      - "Adult points to the answer."
+    suitable_activity_types:
+      - game
+      - manipulatives_activity
+    progress_observation_notes: "Always record the reference point and prompt wording."
+  - canonical_objective_id: fco.math.measure-length.001
+    title: Compare and measure length fairly.
+    domain: measurement
+    child_friendly_goal: "I can compare lengths and use units carefully."
+    parent_observable_behavior: "Child aligns objects, compares length/height, or measures with repeated equal units."
+    related_textbook_objectives:
+      - obj.math.foundation.measurement.compare-lengths.001
+      - obj.math.foundation.measurement.use-start-line.001
+      - obj.math.foundation.measurement.nonstandard-length.001
+    related_standard_outcomes:
+      - std.china2022.math.stage1.geometry-measure-data.001
+      - std.ibpyp.math.phase1.measurement.001
+      - std.sgmoe.math.p1.measure-geometry.001
+    evidence_examples:
+      - "Uses a common start line before comparing."
+      - "Measures with same-size units without gaps."
+    not_evidence:
+      - "Eyeballing without alignment when fair comparison is the target."
+      - "Using mixed-size units without noticing the issue."
+    suitable_activity_types:
+      - measuring_activity
+      - real_life_math
+    progress_observation_notes: "Record alignment, unit consistency, and any gaps or overlaps."
+  - canonical_objective_id: fco.math.explain-thinking.001
+    title: Explain mathematical thinking with objects, words, or drawings.
+    domain: mathematical_reasoning
+    child_friendly_goal: "I can show or say how I figured it out."
+    parent_observable_behavior: "Child explains a strategy, shows it with objects, draws it, or answers why/how in a simple way."
+    related_textbook_objectives:
+      - obj.math.foundation.problem-solving.explain-strategy.001
+      - obj.math.foundation.reasoning.choose-strategy-within-20.001
+    related_standard_outcomes:
+      - std.sgmoe.math.primary.problem-solving-assessment.001
+      - std.china2022.math.stage1.communication-attitude.001
+    evidence_examples:
+      - "Shows why one set has more by matching objects."
+      - "Explains counting-on or taking-away with counters."
+    not_evidence:
+      - "Correct answer with no observable strategy."
+      - "Adult explanation repeated without child ownership."
+    suitable_activity_types:
+      - math_talk
+      - diagnostic_task
+    progress_observation_notes: "Accept gestures, objects, and drawings as evidence; do not require polished verbal explanation."

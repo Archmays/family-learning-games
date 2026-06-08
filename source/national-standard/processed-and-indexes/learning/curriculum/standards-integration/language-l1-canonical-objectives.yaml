@@ -1,0 +1,332 @@
+﻿schema_version: language_l1_canonical_objectives_v1
+created: "2026-05-27"
+status: active
+scope: English L1 family canonical objectives for standards crosswalk and later observation design
+principles:
+  - "Objectives synthesize Cambridge Primary Path L1 data, selected standards, and Foundation continuity."
+  - "They are not copied from standards or textbook unit titles."
+  - "They are planning targets only; progress ledger use requires real observation evidence."
+english_l1:
+  - canonical_objective_id: co.eng.l1.vocabulary-context.001
+    title: Use L1 topic words in context.
+    domain: vocabulary
+    child_friendly_goal: "I can use new English words to talk about familiar people, places, things, actions, and ideas."
+    parent_observable_behavior: "Child recognizes, chooses, names, sorts, or uses L1 topic words with pictures, objects, actions, or a short sentence."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.vocabulary-growth.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/vocabulary.jsonl
+      - knowledge/cards/cambridge-primary-path-l1-cards.jsonl
+    related_standard_outcomes:
+      - std.china2022.eng.l1.vocabulary-grammar.001
+      - std.sgmoe.eng.lp.vocabulary.001
+      - std.ibpyp.lang.phase1-2.oral.001
+    evidence_examples:
+      - "Names or selects target words and shows meaning with a picture, gesture, or object."
+      - "Uses a topic word in a short supported sentence rather than only repeating it."
+    not_evidence:
+      - "The word appears in a textbook unit."
+      - "Child echoes a word immediately after the adult without showing meaning."
+    suitable_activity_types:
+      - picture_talk
+      - card_sort
+      - oral_frame
+    progress_observation_notes: "Record exact word set, support level, and whether the child recognized, repeated, named, or used the word."
+    foundation_connection: "Extends Foundation naming from familiar objects into broader L1 topic vocabulary and contextual use."
+
+  - canonical_objective_id: co.eng.l1.sentence-patterns.001
+    title: Adapt a short L1 sentence pattern.
+    domain: sentence_patterns
+    child_friendly_goal: "I can change a word in a sentence frame to say my own idea."
+    parent_observable_behavior: "Child adapts a target frame for identity, possession, place, ability, preference, need, or current action with meaningful substitution."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.sentence-patterns.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/sentence-patterns.jsonl
+    related_standard_outcomes:
+      - std.china2022.eng.l1.vocabulary-grammar.001
+      - std.sgmoe.eng.lp.grammar.001
+      - std.ibpyp.lang.phase2.writing.001
+    evidence_examples:
+      - "Uses a frame such as `There is...`, `I have...`, or `I want...` with a chosen word."
+      - "Changes one or two words in a modeled sentence and explains or points to what it means."
+    not_evidence:
+      - "A chorus response where individual meaning is not visible."
+      - "A grammar worksheet answer with no oral, visual, or written context."
+    suitable_activity_types:
+      - oral_frame
+      - picture_description
+      - sentence_substitution
+    progress_observation_notes: "Distinguish exact repetition from meaningful substitution or independent sentence creation."
+    foundation_connection: "Builds from Foundation sentence frames by increasing grammar range and requiring clearer meaning checks."
+
+  - canonical_objective_id: co.eng.l1.language-functions.001
+    title: Use English for a simple communicative purpose.
+    domain: language_functions
+    child_friendly_goal: "I can use English to ask, answer, describe, explain, or clarify something small."
+    parent_observable_behavior: "Child completes a brief communicative purpose using words, sentence frames, gestures, visuals, or a short exchange."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.language-functions.001
+      - obj.lang.english.l1.interaction-discussion.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/language-functions.jsonl
+    related_standard_outcomes:
+      - std.china2022.eng.l1.language-skills.001
+      - std.sgmoe.eng.lp.speaking-representing.001
+      - std.ibpyp.lang.phase1-2.oral.001
+    evidence_examples:
+      - "Asks a simple question to get information or clarification."
+      - "Answers a question and adds one relevant detail with support."
+    not_evidence:
+      - "Completing an isolated language-function label."
+      - "Adult supplies the full utterance and the child only agrees."
+    suitable_activity_types:
+      - role_play
+      - information_gap
+      - short_discussion
+    progress_observation_notes: "Record communicative purpose, prompt type, and whether the child initiated, responded, or repaired meaning."
+    foundation_connection: "Extends Foundation turn-taking into purposeful L1 exchanges."
+
+  - canonical_objective_id: co.eng.l1.phonics-sound-awareness.001
+    title: Notice and use L1 sounds or phonics patterns.
+    domain: phonics_sound_awareness
+    child_friendly_goal: "I can hear, say, sort, or read words with the same sound pattern."
+    parent_observable_behavior: "Child identifies, repeats, sorts, blends, or reads familiar words by using a target sound or phonics pattern."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.phonics-sound-awareness.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/phonics-or-sound-awareness.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.early-literacy.001
+      - std.ibpyp.lang.phase1-2.oral.001
+      - std.ibpyp.lang.phase2.reading.001
+    evidence_examples:
+      - "Sorts familiar words by a target beginning, middle, final, or vowel sound."
+      - "Uses the sound pattern to read or choose a familiar word."
+    not_evidence:
+      - "Adult says the sound and the child repeats once with no discrimination task."
+      - "Phonics exposure in the textbook without child response."
+    suitable_activity_types:
+      - sound_sort
+      - word_match
+      - shared_reading
+    progress_observation_notes: "Record target sound, word set, and whether the response was auditory, oral, visual, or print-based."
+    foundation_connection: "Moves from Foundation sound imitation into noticing patterns that support reading readiness."
+
+  - canonical_objective_id: co.eng.l1.listening-viewing.001
+    title: Show understanding after listening or viewing.
+    domain: listening_viewing
+    child_friendly_goal: "I can listen or look carefully and show what I understand."
+    parent_observable_behavior: "Child responds to a short oral, visual, or multimodal prompt through action, choice, drawing, pointing, note, or short answer."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.listening-comprehension.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/exercise-items.jsonl
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/progress-observation-points.jsonl
+    related_standard_outcomes:
+      - std.china2022.eng.l1.language-skills.001
+      - std.sgmoe.eng.lp.listening-viewing.001
+      - std.ibpyp.lang.phase1-2.oral.001
+    evidence_examples:
+      - "Chooses the matching picture after hearing a short prompt."
+      - "Answers a who, where, what, or action question after a short listening/viewing task."
+    not_evidence:
+      - "Adult translates every sentence before the child responds."
+      - "Child guesses correctly once with no context record."
+    suitable_activity_types:
+      - listen_and_choose
+      - picture_response
+      - short_video_or_story_response
+    progress_observation_notes: "Record source prompt, response mode, and whether comprehension was literal, inferred from visuals, or heavily prompted."
+    foundation_connection: "Extends Foundation listen-and-act into L1 listening/viewing comprehension."
+
+  - canonical_objective_id: co.eng.l1.speaking-oracy.001
+    title: Produce a short supported spoken response.
+    domain: speaking
+    child_friendly_goal: "I can say a short English answer or idea that fits the situation."
+    parent_observable_behavior: "Child gives a short spoken response, mini-presentation, or explanation with frame, picture, object, or adult prompt support."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.speaking-oracy.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/progress-observation-points.jsonl
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/language-functions.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.speaking-representing.001
+      - std.ibpyp.lang.phase1-2.oral.001
+      - std.china2022.eng.l1.input-interaction.001
+    evidence_examples:
+      - "Gives a one- or two-sentence response about a picture or object."
+      - "Retells one small idea from a familiar L1 context using words and gestures."
+    not_evidence:
+      - "Only reciting memorized lines with no connection to the current prompt."
+      - "Parent reports speaking confidence without a dated sample."
+    suitable_activity_types:
+      - show_and_tell
+      - picture_talk
+      - retell_with_objects
+    progress_observation_notes: "Record transcript or close paraphrase, support level, and whether meaning was self-generated."
+    foundation_connection: "Extends Foundation one-word or frame responses into short supported oracy."
+
+  - canonical_objective_id: co.eng.l1.reading-strategies.001
+    title: Use early reading clues to make meaning.
+    domain: reading_comprehension
+    child_friendly_goal: "I can use pictures, words, and clues to understand a short text."
+    parent_observable_behavior: "Child uses pictures, captions, setting, sequence, main idea, prediction, or personal connection to explain a reading choice."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.reading-strategies.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/reading-skills.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.reading-viewing.001
+      - std.ibpyp.lang.phase2.reading.001
+      - std.china2022.eng.l1.language-skills.001
+    evidence_examples:
+      - "Points to a picture or word clue and says why a prediction makes sense."
+      - "Puts two or three events or pictures in sequence and explains the order."
+    not_evidence:
+      - "Adult explains the whole text and child repeats the answer."
+      - "Finishing a reading page without evidence of strategy use."
+    suitable_activity_types:
+      - shared_reading
+      - picture_walk
+      - sequence_cards
+    progress_observation_notes: "Record which clue the child used and whether the explanation was prompted or independent."
+    foundation_connection: "Builds from Foundation visual-reading readiness into explicit L1 reading strategies."
+
+  - canonical_objective_id: co.eng.l1.reading-fluency-readiness.001
+    title: Read or recognize familiar L1 words and short text with support.
+    domain: reading_fluency_readiness
+    child_friendly_goal: "I can read or recognize some familiar words and short lines."
+    parent_observable_behavior: "Child recognizes familiar signs, high-interest words, short captions, or repeated lines and uses print or sound clues to recover meaning."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.reading-strategies.001
+      - obj.lang.english.l1.phonics-sound-awareness.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/reading-skills.jsonl
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/phonics-or-sound-awareness.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.reading-viewing.001
+      - std.sgmoe.eng.lp.early-literacy.001
+      - std.ibpyp.lang.phase2.reading.001
+    evidence_examples:
+      - "Recognizes a repeated caption or high-interest word in a new picture context."
+      - "Uses a known phonics clue to read or correct a familiar word."
+    not_evidence:
+      - "Memorized page recitation where print tracking is not visible."
+      - "Adult reads aloud and child points randomly."
+    suitable_activity_types:
+      - repeated_reading
+      - word_hunt
+      - caption_match
+    progress_observation_notes: "Keep this as readiness evidence; do not claim independent fluency from supported recognition alone."
+    foundation_connection: "Extends Foundation label matching into supported word recognition and short-text tracking."
+
+  - canonical_objective_id: co.eng.l1.writing-captions-sentences.001
+    title: Write or build a short meaningful L1 text.
+    domain: writing_readiness
+    child_friendly_goal: "I can make a label, caption, sentence, or short description that someone else can understand."
+    parent_observable_behavior: "Child copies, completes, builds, or writes a short label, caption, sentence, list, or description with visible meaning."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.writing-readiness.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/writing-readiness.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.writing-representing.001
+      - std.ibpyp.lang.phase2.writing.001
+      - std.china2022.eng.l1.language-skills.001
+    evidence_examples:
+      - "Writes or assembles a caption that matches a picture."
+      - "Completes a supported sentence and can read or explain it back."
+    not_evidence:
+      - "Tracing isolated letters without connecting to meaning."
+      - "A polished adult-corrected sentence with no record of child contribution."
+    suitable_activity_types:
+      - label_and_caption
+      - sentence_builder
+      - picture_description
+    progress_observation_notes: "Record whether output was traced, copied, selected, dictated, jointly composed, or independently written."
+    foundation_connection: "Moves from Foundation tracing/copying readiness into short meaningful written output."
+
+  - canonical_objective_id: co.eng.l1.visual-multimodal.001
+    title: Connect words, pictures, and visual information.
+    domain: visual_multimodal_literacy
+    child_friendly_goal: "I can use pictures and words together to understand or share an idea."
+    parent_observable_behavior: "Child explains how a picture, symbol, illustration, gesture, or simple digital icon supports meaning in an English task."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.reading-strategies.001
+      - obj.lang.english.l1.language-functions.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/activity-materials.jsonl
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/reading-skills.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.listening-viewing.001
+      - std.sgmoe.eng.lp.reading-viewing.001
+      - std.ibpyp.lang.phase2.visual.001
+    evidence_examples:
+      - "Explains what a picture adds to a caption or short text."
+      - "Creates a simple drawing or visual arrangement to show a word, sentence, or idea."
+    not_evidence:
+      - "Looking at pictures without explaining or using meaning."
+      - "Decorating a page without a language connection."
+    suitable_activity_types:
+      - picture_caption_match
+      - visual_retell
+      - multimodal_presentation
+    progress_observation_notes: "Record the connection the child made between visual cue and language meaning."
+    foundation_connection: "Extends Foundation picture-supported meaning into more intentional viewing and representing."
+
+  - canonical_objective_id: co.eng.l1.interaction-discussion.001
+    title: Participate in a respectful short English exchange.
+    domain: interaction
+    child_friendly_goal: "I can take turns, listen, answer, and add something in a short English exchange."
+    parent_observable_behavior: "Child participates in a short exchange by taking turns, listening, responding, asking, clarifying, or giving feedback with support."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.interaction-discussion.001
+      - obj.lang.english.l1.speaking-oracy.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/language-functions.jsonl
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/progress-observation-points.jsonl
+    related_standard_outcomes:
+      - std.sgmoe.eng.lp.speaking-representing.001
+      - std.ibpyp.lang.phase1-2.oral.001
+      - std.china2022.eng.l1.learning-strategy.001
+    evidence_examples:
+      - "Uses or responds to one turn-taking cue in a short pair or parent-child exchange."
+      - "Asks for help or clarification instead of stopping silently."
+    not_evidence:
+      - "Adult conducts the whole exchange and the child only nods."
+      - "Group participation claim without a specific observed action."
+    suitable_activity_types:
+      - pair_talk
+      - role_play
+      - guided_discussion
+    progress_observation_notes: "Record conversational move, support level, and whether interaction was spontaneous, prompted, or rehearsed."
+    foundation_connection: "Builds from Foundation turn-taking and greeting routines toward L1 discussion cues."
+
+  - canonical_objective_id: co.eng.l1.learning-habits.001
+    title: Sustain a short English practice routine with evidence.
+    domain: learning_habits
+    child_friendly_goal: "I can practise for a short time and show what I tried, what helped, and what is next."
+    parent_observable_behavior: "Child completes a short English routine and leaves a visible trace such as spoken sample, marked choice, drawing, caption, reading note, or parent observation note."
+    related_learning_map_objectives:
+      - obj.lang.english.l1.learning-habits.001
+      - obj.lang.english.l1.home-practice-evidence.001
+    related_textbook_assets:
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/progress-observation-points.jsonl
+      - source/cambridge-primary-path-processed/cambridge-primary-path-l1/workbook-alignment.jsonl
+    related_standard_outcomes:
+      - std.china2022.eng.l1.learning-strategy.001
+      - std.sgmoe.eng.lp.early-literacy.001
+      - std.ibpyp.lang.phase1-2.oral.001
+    evidence_examples:
+      - "Completes a 5-10 minute routine and identifies one easy or hard part with support."
+      - "Leaves an observation-ready sample with date, task, prompt, and support level."
+    not_evidence:
+      - "Parent says the child finished the unit."
+      - "A plan to practise later."
+    suitable_activity_types:
+      - short_practice_routine
+      - reflection_prompt
+      - evidence_capture
+    progress_observation_notes: "Use this objective to protect evidence quality; it does not prove mastery of the language skill practised."
+    foundation_connection: "Continues Foundation evidence discipline while allowing richer L1 task traces."
