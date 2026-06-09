@@ -1639,6 +1639,14 @@ button {
   opacity: 0.45;
 }
 
+.multiplication-array--character {
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-items: center;
+  padding: 3px;
+  gap: 4px;
+}
+
 .multiplication-array.is-revealed {
   opacity: 1;
   animation: feedback-pop 260ms ease-out;
@@ -1646,6 +1654,37 @@ button {
 
 .multiplication-array.is-revealed i {
   background: #8bd39e;
+}
+
+.multiplication-array--character i {
+  width: 28px;
+  aspect-ratio: 1;
+  border: 2px solid #25313b;
+  border-radius: 3px;
+  background: #ffcf6a;
+}
+
+.multiplication-array--character .multiplication-number-character {
+  display: block;
+  width: clamp(58px, 12vw, 80px);
+  height: clamp(58px, 12vw, 80px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fffdf6;
+  box-shadow: 0 2px 0 rgba(37, 49, 59, 0.15), 0 0 0 2px rgba(255, 253, 246, 0.9);
+}
+
+.multiplication-array--character .multiplication-number-character--single {
+  width: clamp(84px, 16vw, 132px);
+  height: clamp(84px, 16vw, 132px);
+  border-radius: 18px;
+  object-fit: contain;
+  box-shadow: 0 4px 0 rgba(37, 49, 59, 0.2), 0 0 0 3px rgba(255, 253, 246, 0.92);
+}
+
+.multiplication-array--character.is-revealed .multiplication-number-character {
+  opacity: 1;
 }
 
 .multiplication-result-panel span {
@@ -2362,6 +2401,11 @@ button {
 
   .multiplication-operator {
     font-size: 24px;
+  }
+
+  .multiplication-array--character .multiplication-number-character {
+    width: clamp(58px, 20vw, 86px);
+    height: clamp(58px, 20vw, 86px);
   }
 
   .clock-face {

@@ -2,6 +2,11 @@ import type { GameDefinition, MountGameContext, MountedGame } from "../../packag
 import { clearElement, createButton, createFeedbackBanner, createStatus, playFeedbackSound } from "../../packages/ui";
 import type { FeedbackState } from "../../packages/ui";
 
+const numberCharacterImages = import.meta.glob<{ default: string }>(
+  "../../source/number-blocks-character/*.webp",
+  { eager: true }
+);
+
 interface MultiplicationSave {
   bestScore: number;
   plays: number;
@@ -27,13 +32,14 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
   context.container.append(root);
 
   let view: MultiplicationView = "menu";
-  let factor = 2;
+  let factor = 1;
   let questionIndex = 0;
   let score = 0;
   let input = "";
   let currentA = 2;
   let currentB = 2;
   let showResultModel = false;
+  let showCharacterResult = false;
   let locked = false;
   let feedback: FeedbackState = { kind: "info", text: "准备好就开始。" };
   let timer: number | undefined;
@@ -92,7 +98,7 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
 
     const tabs = document.createElement("div");
     tabs.className = "learning-game__toolbar";
-    for (let value = 2; value <= 9; value += 1) {
+    for (let value = 1; value <= 9; value += 1) {
       tabs.append(createButton(String(value), () => {
         factor = value;
         render();
@@ -110,7 +116,7 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
       title.textContent = `${factor} × ${value} = ${factor * value}`;
       const explain = document.createElement("span");
       explain.textContent = `${factor} 组，每组 ${value} 个`;
-      card.append(title, createResultArray(factor, value, true), explain);
+      card.append(title, createResultArray(factor, value, true, true), explain);
       grid.append(card);
     }
 
@@ -205,6 +211,7 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
     }
     input = "";
     showResultModel = false;
+    showCharacterResult = false;
     locked = false;
     render();
   };
@@ -219,6 +226,7 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
     const answer = currentA * currentB;
     const correct = Number(input) === answer;
     showResultModel = true;
+    showCharacterResult = correct;
     locked = true;
 
     if (correct) {
@@ -248,7 +256,7 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
   const createResultPanel = (): HTMLElement => {
     const panel = document.createElement("div");
     panel.className = showResultModel ? "multiplication-result-panel is-revealed" : "multiplication-result-panel";
-    panel.append(createResultArray(currentA, currentB, showResultModel));
+    panel.append(createResultArray(currentA, currentB, showResultModel, showCharacterResult));
     const label = document.createElement("span");
     label.textContent = showResultModel ? `${currentA * currentB} 个` : "先自己算";
     panel.append(label);
@@ -305,8 +313,27 @@ function createNumberBlock(value: number): HTMLElement {
   return block;
 }
 
-function createResultArray(a: number, b: number, revealed: boolean): HTMLElement {
+function createResultArray(a: number, b: number, revealed: boolean, useCharacterImages = false): HTMLElement {
   const grid = document.createElement("div");
+  if (useCharacterImages) {
+    grid.className = revealed ? "multiplication-array multiplication-array--character is-revealed" : "multiplication-array multiplication-array--character";
+    const product = getMultiplicationGridCount(a, b);
+    const numberCharacterImage = numberCharacterImages[`../../source/number-blocks-character/${product}.webp`];
+    const imageSource = numberCharacterImage?.default;
+    if (imageSource) {
+      const character = document.createElement("img");
+      character.className = "multiplication-number-character multiplication-number-character--single";
+      character.src = imageSource;
+      character.alt = `${product}`;
+      grid.append(character);
+      return grid;
+    }
+
+    const cell = document.createElement("i");
+    grid.append(cell);
+    return grid;
+  }
+
   grid.className = revealed ? "multiplication-array is-revealed" : "multiplication-array";
   grid.style.setProperty("--array-columns", String(b));
   for (let index = 0; index < getMultiplicationGridCount(a, b); index += 1) {
