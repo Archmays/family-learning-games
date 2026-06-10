@@ -15,7 +15,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image("stageMarketBg", "assets/generated/math-lab-stage-market.png");
     this.load.image("targetGuardian", "assets/generated/target-guardian.png");
     this.load.image("helperTrio", "assets/generated/helper-trio.png");
-    for (let index = 1; index <= 15; index += 1) {
+    for (let index = 1; index <= 7; index += 1) {
       const suffix = String(index).padStart(2, "0");
       this.load.image(`mathLabHelper${suffix}`, `assets/generated/math-lab-helper-${suffix}.png`);
     }

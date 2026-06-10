@@ -57,7 +57,7 @@ const fallbackSceneCopy: SceneCopyDefinition = {
 };
 
 const helperCharacterKeys = Array.from(
-  { length: 15 },
+  { length: 7 },
   (_, index) => `mathLabHelper${String(index + 1).padStart(2, "0")}`
 );
 
