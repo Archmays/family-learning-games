@@ -26,6 +26,17 @@
 - 不要为单次使用代码新增抽象。
 - 不要引入复杂后端，优先使用前端本地状态或 localStorage。
 
+## 外部辅助规则
+
+- 需要生成图标或图片时，先判断素材所需精细度级别：
+  - Level 1：简单图标、占位图、基础 UI 图形，直接生成。
+  - Level 2：需要较完整视觉效果、但不要求高度一致或精确约束的游戏插图、美术素材，调用 `imagegen`。
+  - Level 3：高度精细、风格关键、角色一致性关键、品牌相关或复杂构图素材，先把完整 prompt 发给用户，由用户拿去给 ChatGPT 生成后再发回。
+- 执行任务或安排计划时，先判断是否需要额外的 ChatGPT deep research report。
+- 对外部信息依赖高、不确定性高，或涉及儿童教育方法、科学内容准确性、版权、市场、竞品、复杂视觉风格研究的任务，应要求 deep research report。
+- 常规本地代码修改、bug 修复、小型 UI 调整、测试和文档更新通常不需要 deep research report。
+- 如果需要 deep research report，先给用户一份完整 prompt，说明研究目标、范围、资料要求、约束条件和期望输出。
+
 ## 验证规则
 
 - 修改后必须运行项目。
@@ -41,3 +52,26 @@
 - 不要移动大量文件而不说明原因。
 - 不要引入联网、登录、支付、广告等功能，除非用户明确要求。
 - 不要把每个小游戏拆成独立仓库。
+
+## Skill usage audit
+
+Before starting any non-trivial task, Codex must inspect `skill/SKILL_INDEX.md` and decide whether any project skill applies.
+
+At the start of the response, include a short section:
+
+### Skill usage
+- Selected skill(s): `<skill-id>` or `none`
+- Skill path(s): `skill/<skill-id>/SKILL.md` or `none`
+- Reason: one short sentence explaining why the skill applies or why no skill is needed.
+
+If a task uses a skill, Codex must read the relevant `skill/<skill-id>/SKILL.md` before planning or editing files.
+
+At the end of the response, include:
+
+### Skill audit
+- Skill(s) actually used:
+- Key rule(s) followed:
+- Files read from the skill folder:
+- Any skill that looked relevant but was not used, with reason:
+
+Do not reveal private chain-of-thought. Provide only an audit summary of selected skills, files read, and rules followed.
