@@ -42,7 +42,6 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
   let showCharacterResult = false;
   let locked = false;
   let feedback: FeedbackState = { kind: "info", text: "准备好就开始。" };
-  let timer: number | undefined;
   const totalQuestions = 10;
   const save = context.storage.get<MultiplicationSave>("progress", { bestScore: 0, plays: 0 });
 
@@ -175,10 +174,12 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
     const actions = document.createElement("div");
     actions.className = "learning-game__actions";
     actions.append(createButton("返回乘法主页", () => {
-      window.clearTimeout(timer);
       view = "menu";
       render();
     }, { className: "ui-button ui-button--secondary" }));
+    if (locked) {
+      actions.append(createButton(questionIndex >= totalQuestions ? "查看成绩" : "下一题", advanceAfterReview));
+    }
 
     root.append(stats, process, question, answer, pad, actions, createFeedbackBanner(feedback));
   };
@@ -216,6 +217,19 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
     render();
   };
 
+  const advanceAfterReview = (): void => {
+    if (questionIndex >= totalQuestions) {
+      save.plays += 1;
+      save.bestScore = Math.max(save.bestScore, score);
+      context.storage.set("progress", save);
+      view = "done";
+      render();
+      return;
+    }
+
+    nextQuestion();
+  };
+
   const checkAnswer = (): void => {
     if (!input) {
       feedback = { kind: "info", text: "先输入答案。" };
@@ -239,18 +253,6 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
     }
 
     render();
-    window.clearTimeout(timer);
-    timer = window.setTimeout(() => {
-      if (questionIndex >= totalQuestions) {
-        save.plays += 1;
-        save.bestScore = Math.max(save.bestScore, score);
-        context.storage.set("progress", save);
-        view = "done";
-        render();
-        return;
-      }
-      nextQuestion();
-    }, correct ? 950 : 1500);
   };
 
   const createResultPanel = (): HTMLElement => {
@@ -268,7 +270,6 @@ function mountMultiplicationAdventure(context: MountGameContext): MountedGame {
 
   return {
     destroy(): void {
-      window.clearTimeout(timer);
       window.removeEventListener("keydown", handleKeyDown);
       root.remove();
     }

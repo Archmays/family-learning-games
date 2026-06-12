@@ -46,6 +46,14 @@ describe("learning game optimizations", () => {
     expect(pinyin).toContain("返回汉字魔法战");
   });
 
+  it("keeps multiplication challenge review controlled by the next button", () => {
+    const multiplication = readFileSync("games/multiplication-adventure/index.ts", "utf8");
+
+    expect(multiplication).not.toContain("setTimeout");
+    expect(multiplication).toContain("下一题");
+    expect(multiplication).toContain("查看成绩");
+  });
+
   it("keeps the restored learning feedback surfaces in source", () => {
     const clock = readFileSync("games/clock-reader/index.ts", "utf8");
     const english = readFileSync("games/english-spell-battle/index.ts", "utf8");
