@@ -1,5 +1,5 @@
 import type { GameDefinition, MountGameContext, MountedGame } from "../../packages/game-core";
-import { memoryCardPairs } from "../../packages/data/memoryCards";
+import { MEMORY_CARD_PAIR_COUNT, memoryCardSets, pickMemoryCardPairs, type MemoryCardPair } from "../../packages/data/memoryCards";
 import { clearElement, createButton, createStatus } from "../../packages/ui";
 
 interface CardState {
@@ -12,6 +12,10 @@ interface CardState {
 }
 
 interface MemoryCardSave {
+  grades: Record<string, MemoryCardGradeProgress>;
+}
+
+interface MemoryCardGradeProgress {
   bestMoves: number | null;
   completions: number;
 }
@@ -33,19 +37,40 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
   root.className = "memory-card-game";
   context.container.append(root);
 
-  let cards = createDeck();
+  let setIndex = 0;
+  let activePairs = pickMemoryCardPairs(getActivePairs());
+  let cards = createDeck(activePairs);
   let moves = 0;
   let matchedPairs = 0;
   let locked = false;
   let timer: number | undefined;
-  const save = context.storage.get<MemoryCardSave>("progress", {
-    bestMoves: null,
-    completions: 0
-  });
+  const save = normalizeSave(context.storage.get<MemoryCardSave>("progress", { grades: {} }));
+
+  function getActivePairs(): readonly MemoryCardPair[] {
+    return memoryCardSets[setIndex].pairs;
+  }
+
+  function getActiveProgress(): MemoryCardGradeProgress {
+    const setId = memoryCardSets[setIndex].id;
+    save.grades[setId] ??= {
+      bestMoves: null,
+      completions: 0
+    };
+    return save.grades[setId];
+  }
+
+  const switchSet = (nextIndex: number): void => {
+    if (nextIndex === setIndex) {
+      return;
+    }
+    setIndex = nextIndex;
+    restart();
+  };
 
   const restart = (): void => {
     window.clearTimeout(timer);
-    cards = createDeck();
+    activePairs = pickMemoryCardPairs(getActivePairs());
+    cards = createDeck(activePairs);
     moves = 0;
     matchedPairs = 0;
     locked = false;
@@ -88,12 +113,13 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
   };
 
   const saveIfComplete = (): void => {
-    if (matchedPairs !== memoryCardPairs.length) {
+    if (matchedPairs !== activePairs.length) {
       return;
     }
 
-    save.completions += 1;
-    save.bestMoves = save.bestMoves === null ? moves : Math.min(save.bestMoves, moves);
+    const progress = getActiveProgress();
+    progress.completions += 1;
+    progress.bestMoves = progress.bestMoves === null ? moves : Math.min(progress.bestMoves, moves);
     context.storage.set("progress", save);
   };
 
@@ -108,12 +134,23 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
     intro.textContent = "每次翻两张，找到相同的一对。";
     header.append(title, intro);
 
+    const gradeControls = document.createElement("div");
+    gradeControls.className = "learning-game__toolbar memory-card-game__grades";
+    for (let index = 0; index < memoryCardSets.length; index += 1) {
+      gradeControls.append(createButton(memoryCardSets[index].label, () => switchSet(index), {
+        className: index === setIndex ? "ui-button learning-game__pill is-active" : "ui-button learning-game__pill"
+      }));
+    }
+
+    const activeProgress = getActiveProgress();
     const stats = document.createElement("div");
     stats.className = "memory-card-game__stats";
     stats.append(
       createStatus("步数", moves),
-      createStatus("已找到", `${matchedPairs}/${memoryCardPairs.length}`),
-      createStatus("最佳", save.bestMoves ?? "暂无")
+      createStatus("已找到", `${matchedPairs}/${activePairs.length}`),
+      createStatus("当前", memoryCardSets[setIndex].label),
+      createStatus("题库", `${getActivePairs().length} 字`),
+      createStatus("最佳", activeProgress.bestMoves ?? "暂无")
     );
 
     const grid = document.createElement("div");
@@ -137,9 +174,9 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
       })
     );
 
-    root.append(header, stats, grid, controls);
+    root.append(header, gradeControls, stats, grid, controls);
 
-    if (matchedPairs === memoryCardPairs.length) {
+    if (matchedPairs === activePairs.length) {
       const done = document.createElement("div");
       done.className = "memory-card-game__done";
       done.textContent = `完成了！这次用了 ${moves} 步。`;
@@ -157,8 +194,8 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
   };
 }
 
-function createDeck(): CardState[] {
-  const deck = memoryCardPairs.flatMap((pair) => [
+function createDeck(pairs: readonly MemoryCardPair[]): CardState[] {
+  const deck = pairs.slice(0, MEMORY_CARD_PAIR_COUNT).flatMap((pair) => [
     createCard(pair.id, pair.label, pair.symbol, "a"),
     createCard(pair.id, pair.label, pair.symbol, "b")
   ]);
@@ -188,4 +225,11 @@ function shuffle<T>(items: T[]): T[] {
 function getCardClassName(card: CardState): string {
   const state = card.matched ? " memory-card-tile--matched" : card.flipped ? " memory-card-tile--flipped" : "";
   return `memory-card-tile${state}`;
+}
+
+function normalizeSave(save: MemoryCardSave): MemoryCardSave {
+  if (!("grades" in save)) {
+    return { grades: {} };
+  }
+  return save;
 }

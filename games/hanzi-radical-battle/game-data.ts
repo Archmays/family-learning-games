@@ -150,7 +150,7 @@ export const HANZI_RADICAL_MONSTERS = [
   }
 ] as const satisfies readonly HanziRadicalMonster[];
 
-export const HANZI_RADICAL_COMBINATION_ENTRIES = [
+const HANZI_RADICAL_BASE_COMBINATION_ENTRIES = [
   {
     parts: [
       "氵",
@@ -4216,6 +4216,83 @@ export const HANZI_RADICAL_COMBINATION_ENTRIES = [
   }
 ] as const satisfies readonly HanziRadicalCombinationEntry[];
 
+const HANZI_RADICAL_WHEEL_COMBINATION_ENTRIES = [
+  { parts: ["日", "月"], result: { char: "明", power: 15, desc: "明天", type: "light", struct: "lr" } },
+  { parts: ["一", "火"], result: { char: "灭", power: 15, desc: "灭火", type: "defense", struct: "tb" } },
+  { parts: ["手", "目"], result: { char: "看", power: 15, desc: "看见", type: "mind", struct: "tb" } },
+  { parts: ["木", "木"], result: { char: "林", power: 15, desc: "树林", type: "wood", struct: "lr" } },
+  { parts: ["人", "人"], result: { char: "从", power: 15, desc: "从前", type: "normal", struct: "lr" } },
+  { parts: ["禾", "口"], result: { char: "和", power: 15, desc: "和平", type: "good", struct: "lr" } },
+  { parts: ["氵", "青"], result: { char: "清", power: 15, desc: "清水", type: "water", struct: "lr" } },
+  { parts: ["日", "青"], result: { char: "晴", power: 15, desc: "晴天", type: "light", struct: "lr" } },
+  { parts: ["目", "青"], result: { char: "睛", power: 15, desc: "眼睛", type: "mind", struct: "lr" } },
+  { parts: ["忄", "青"], result: { char: "情", power: 15, desc: "心情", type: "mind", struct: "lr" } },
+  { parts: ["虫", "青"], result: { char: "蜻", power: 15, desc: "蜻蜓", type: "air", struct: "lr" } },
+  { parts: ["氵", "包"], result: { char: "泡", power: 15, desc: "气泡", type: "water", struct: "lr" } },
+  { parts: ["火", "包"], result: { char: "炮", power: 15, desc: "鞭炮", type: "attack", struct: "lr" } },
+  { parts: ["足", "包"], result: { char: "跑", power: 15, desc: "跑步", type: "action", struct: "lr" } },
+  { parts: ["饣", "包"], result: { char: "饱", power: 15, desc: "吃饱", type: "heal", struct: "lr" } },
+  { parts: ["木", "公"], result: { char: "松", power: 15, desc: "松树", type: "wood", struct: "lr" } },
+  { parts: ["木", "白"], result: { char: "柏", power: 15, desc: "柏树", type: "wood", struct: "lr" } },
+  { parts: ["亻", "白"], result: { char: "伯", power: 15, desc: "伯伯", type: "normal", struct: "lr" } },
+  { parts: ["月", "巴"], result: { char: "肥", power: 15, desc: "肥胖", type: "body", struct: "lr" } },
+  { parts: ["月", "要"], result: { char: "腰", power: 15, desc: "腰带", type: "body", struct: "lr" } },
+  { parts: ["犭", "王"], result: { char: "狂", power: 15, desc: "疯狂", type: "attack", struct: "lr" } },
+  { parts: ["犭", "苗"], result: { char: "猫", power: 15, desc: "花猫", type: "life", struct: "lr" } },
+  { parts: ["犭", "青"], result: { char: "猜", power: 15, desc: "猜想", type: "mind", struct: "lr" } },
+  { parts: ["氵", "朝"], result: { char: "潮", power: 15, desc: "潮湿", type: "water", struct: "lr" } },
+  { parts: ["讠", "寸"], result: { char: "讨", power: 15, desc: "讨论", type: "mind", struct: "lr" } },
+  { parts: ["路", "鸟"], result: { char: "鹭", power: 15, desc: "白鹭", type: "air", struct: "lr" } },
+  { parts: ["口", "耆"], result: { char: "嗜", power: 15, desc: "嗜好", type: "normal", struct: "lr" } },
+  { parts: ["匚", "甲"], result: { char: "匣", power: 15, desc: "镜匣", type: "defense", struct: "sur" } },
+  { parts: ["口", "肖"], result: { char: "哨", power: 15, desc: "哨兵", type: "sound", struct: "lr" } },
+  { parts: ["因", "心"], result: { char: "恩", power: 15, desc: "恩惠", type: "good", struct: "tb" } },
+  { parts: ["音", "匀"], result: { char: "韵", power: 15, desc: "韵味", type: "sound", struct: "lr" } },
+  { parts: ["亡", "目"], result: { char: "盲", power: 15, desc: "盲人", type: "mind", struct: "tb" } },
+  { parts: ["厶", "牛"], result: { char: "牟", power: 15, desc: "牟取", type: "normal", struct: "tb" } },
+  { parts: ["毛", "炎"], result: { char: "毯", power: 15, desc: "地毯", type: "earth", struct: "sur" } },
+  { parts: ["阝", "东"], result: { char: "陈", power: 15, desc: "陈列", type: "normal", struct: "lr" } },
+  { parts: ["尚", "衣"], result: { char: "裳", power: 15, desc: "衣裳", type: "normal", struct: "tb" } },
+  { parts: ["虫", "工"], result: { char: "虹", power: 15, desc: "彩虹", type: "light", struct: "lr" } },
+  { parts: ["足", "帝"], result: { char: "蹄", power: 15, desc: "马蹄", type: "action", struct: "lr" } },
+  { parts: ["府", "肉"], result: { char: "腐", power: 15, desc: "豆腐", type: "normal", struct: "sur" } },
+  { parts: ["羊", "丑"], result: { char: "羞", power: 15, desc: "害羞", type: "mind", struct: "tb" } },
+  { parts: ["日", "暴"], result: { char: "曝", power: 15, desc: "曝晒", type: "light", struct: "lr" } },
+  { parts: ["讠", "普"], result: { char: "谱", power: 15, desc: "乐谱", type: "mind", struct: "lr" } },
+  { parts: ["酉", "云"], result: { char: "酝", power: 15, desc: "酝酿", type: "normal", struct: "lr" } },
+  { parts: ["酉", "良"], result: { char: "酿", power: 15, desc: "酿造", type: "normal", struct: "lr" } },
+  { parts: ["穴", "果"], result: { char: "窠", power: 15, desc: "窠巢", type: "earth", struct: "tb" } },
+  { parts: ["口", "侯"], result: { char: "喉", power: 15, desc: "喉咙", type: "sound", struct: "lr" } },
+  { parts: ["口", "龙"], result: { char: "咙", power: 15, desc: "喉咙", type: "sound", struct: "lr" } },
+  { parts: ["艹", "位"], result: { char: "莅", power: 15, desc: "莅临", type: "life", struct: "tb" } },
+  { parts: ["文", "口"], result: { char: "吝", power: 15, desc: "吝啬", type: "normal", struct: "tb" } },
+  { parts: ["良", "月"], result: { char: "朗", power: 15, desc: "朗润", type: "light", struct: "lr" } },
+  { parts: ["氵", "析"], result: { char: "淅", power: 15, desc: "淅沥", type: "water", struct: "lr" } },
+  { parts: ["氵", "力"], result: { char: "沥", power: 15, desc: "沥青", type: "water", struct: "lr" } },
+  { parts: ["氵", "贵"], result: { char: "溃", power: 15, desc: "溃退", type: "water", struct: "lr" } },
+  { parts: ["氵", "世"], result: { char: "泄", power: 15, desc: "泄气", type: "water", struct: "lr" } },
+  { parts: ["叔", "目"], result: { char: "督", power: 15, desc: "督战", type: "mind", struct: "tb" } },
+  { parts: ["尧", "羽"], result: { char: "翘", power: 15, desc: "翘首", type: "air", struct: "tb" } },
+  { parts: ["酉", "告"], result: { char: "酷", power: 15, desc: "酷似", type: "normal", struct: "lr" } },
+  { parts: ["忄", "肖"], result: { char: "悄", power: 15, desc: "悄然", type: "mind", struct: "lr" } },
+  { parts: ["女", "闲"], result: { char: "娴", power: 15, desc: "娴熟", type: "good", struct: "lr" } },
+  { parts: ["忄", "解"], result: { char: "懈", power: 15, desc: "松懈", type: "mind", struct: "lr" } },
+  { parts: ["火", "喿"], result: { char: "燥", power: 15, desc: "燥热", type: "attack", struct: "lr" } },
+  { parts: ["歹", "单"], result: { char: "殚", power: 15, desc: "殚精竭虑", type: "mind", struct: "lr" } },
+  { parts: ["女", "夭"], result: { char: "妖", power: 15, desc: "妖娆", type: "normal", struct: "lr" } },
+  { parts: ["女", "尧"], result: { char: "娆", power: 15, desc: "妖娆", type: "normal", struct: "lr" } },
+  { parts: ["扌", "斤"], result: { char: "折", power: 15, desc: "折腰", type: "action", struct: "lr" } },
+  { parts: ["钅", "帛"], result: { char: "锦", power: 15, desc: "锦绣", type: "gold", struct: "lr" } },
+  { parts: ["女", "单"], result: { char: "婵", power: 15, desc: "婵娟", type: "good", struct: "lr" } },
+  { parts: ["口", "亚"], result: { char: "哑", power: 15, desc: "哑巴", type: "sound", struct: "lr" } },
+  { parts: ["钅", "固"], result: { char: "锢", power: 15, desc: "禁锢", type: "defense", struct: "lr" } }
+] as const satisfies readonly HanziRadicalCombinationEntry[];
+
+export const HANZI_RADICAL_COMBINATION_ENTRIES = [
+  ...HANZI_RADICAL_BASE_COMBINATION_ENTRIES,
+  ...HANZI_RADICAL_WHEEL_COMBINATION_ENTRIES
+] as const satisfies readonly HanziRadicalCombinationEntry[];
+
 export const HANZI_RADICAL_DECK = [
   "氵",
   "亻",
@@ -4443,11 +4520,68 @@ export const HANZI_RADICAL_DECK = [
   "古",
   "圭",
   "央",
-  "卜"
+  "卜",
+  "力",
+  "王",
+  "月",
+  "冬",
+  "亚",
+  "乂",
+  "匚",
+  "又",
+  "火",
+  "暴",
+  "朝",
+  "丑",
+  "歹",
+  "单",
+  "帝",
+  "东",
+  "府",
+  "阝",
+  "公",
+  "固",
+  "贵",
+  "侯",
+  "甲",
+  "解",
+  "钅",
+  "良",
+  "龙",
+  "路",
+  "苗",
+  "鸟",
+  "牛",
+  "普",
+  "耆",
+  "犭",
+  "肉",
+  "饣",
+  "世",
+  "手",
+  "叔",
+  "厶",
+  "位",
+  "析",
+  "闲",
+  "忄",
+  "尧",
+  "要",
+  "衣",
+  "因",
+  "酉",
+  "羽",
+  "匀",
+  "喿",
+  "足"
 ] as const satisfies readonly string[];
 
 export function combinationKey(parts: readonly string[]): string {
   return [...parts].sort().join("");
+}
+
+function orderedCombinationKey(parts: readonly string[]): string {
+  return parts.join("|");
 }
 
 export const HANZI_RADICAL_COMBINATION_DB = HANZI_RADICAL_COMBINATION_ENTRIES.reduce<Record<string, HanziRadicalCombo | null>>(
@@ -4458,6 +4592,34 @@ export const HANZI_RADICAL_COMBINATION_DB = HANZI_RADICAL_COMBINATION_ENTRIES.re
   {}
 );
 
+const HANZI_RADICAL_ORDERED_COMBINATION_DB = HANZI_RADICAL_COMBINATION_ENTRIES.reduce<Record<string, HanziRadicalCombo | null>>(
+  (db, entry) => {
+    db[orderedCombinationKey(entry.parts)] = entry.result;
+    return db;
+  },
+  {}
+);
+
+const HANZI_RADICAL_UNORDERED_COMBINATION_GROUPS = HANZI_RADICAL_COMBINATION_ENTRIES.reduce<Record<string, HanziRadicalCombinationEntry[]>>(
+  (groups, entry) => {
+    const key = combinationKey(entry.parts);
+    groups[key] ??= [];
+    groups[key].push(entry);
+    return groups;
+  },
+  {}
+);
+
 export function getHanziRadicalCombination(parts: readonly string[]): HanziRadicalCombo | null {
-  return HANZI_RADICAL_COMBINATION_DB[combinationKey(parts)] ?? null;
+  const exactResult = HANZI_RADICAL_ORDERED_COMBINATION_DB[orderedCombinationKey(parts)];
+  if (exactResult !== undefined) {
+    return exactResult;
+  }
+
+  const unorderedMatches = HANZI_RADICAL_UNORDERED_COMBINATION_GROUPS[combinationKey(parts)] ?? [];
+  if (unorderedMatches.length === 1) {
+    return unorderedMatches[0].result;
+  }
+
+  return null;
 }

@@ -3,6 +3,7 @@ import { clearElement, createButton, createStatus } from "../../packages/ui";
 import {
   BASE_HAND_SIZE,
   HANZI_RADICAL_COMBINATION_DB,
+  HANZI_RADICAL_COMBINATION_ENTRIES,
   HANZI_RADICAL_DECK,
   HANZI_RADICAL_HEROES,
   HANZI_RADICAL_MONSTERS,
@@ -865,6 +866,15 @@ export function countValidHanziRadicalCombos(cards: readonly Pick<BattleCard, "c
       }
     }
   }
+  for (let i = 0; i < cardChars.length; i += 1) {
+    for (let j = i + 1; j < cardChars.length; j += 1) {
+      for (let k = j + 1; k < cardChars.length; k += 1) {
+        if (getHanziRadicalCombination([cardChars[i], cardChars[j], cardChars[k]])) {
+          count += 1;
+        }
+      }
+    }
+  }
   return count;
 }
 
@@ -906,19 +916,18 @@ export function drawHanziRadicalCards(
   const finalHand = [...bestHand];
   let needed = 3 - maxCombos;
   if (needed > 0) {
-    const validKeys = Object.keys(HANZI_RADICAL_COMBINATION_DB).filter((key) => key.length <= 2 && HANZI_RADICAL_COMBINATION_DB[key]);
+    const validEntries = HANZI_RADICAL_COMBINATION_ENTRIES.filter((entry) => entry.parts.length === 2 && entry.result);
     for (let index = 0; index < needed; index += 1) {
       if (finalHand.length < 2) {
         break;
       }
-      const randomKey = validKeys[Math.floor(Math.random() * validKeys.length)];
-      const guaranteedChars = randomKey.split("");
+      const entry = validEntries[Math.floor(Math.random() * validEntries.length)];
       if (finalHand.length >= 2 + index * 2) {
         const firstIndex = finalHand.length - 1 - index * 2;
         const secondIndex = finalHand.length - 2 - index * 2;
         if (firstIndex >= 0 && secondIndex >= 0) {
-          finalHand[firstIndex] = { ...finalHand[firstIndex], char: guaranteedChars[0] };
-          finalHand[secondIndex] = { ...finalHand[secondIndex], char: guaranteedChars[1] };
+          finalHand[secondIndex] = { ...finalHand[secondIndex], char: entry.parts[0] };
+          finalHand[firstIndex] = { ...finalHand[firstIndex], char: entry.parts[1] };
         }
       }
     }

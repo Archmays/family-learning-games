@@ -11,4 +11,11 @@ export {
   type HanziWheelSet,
   type PinyinCard
 } from "./learningGames";
-export { memoryCardPairs, type MemoryCardPair } from "./memoryCards";
+export {
+  MEMORY_CARD_PAIR_COUNT,
+  memoryCardPairs,
+  memoryCardSets,
+  pickMemoryCardPairs,
+  type MemoryCardPair,
+  type MemoryCardSet
+} from "./memoryCards";
