@@ -1036,6 +1036,15 @@ button {
   gap: 18px;
 }
 
+.hub-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(1040px, 100%);
+  margin: 0 auto 18px;
+  gap: 10px;
+}
+
 .game-card,
 .ui-panel {
   border: 3px solid #25313b;
@@ -2371,6 +2380,10 @@ button {
 
   .hub-header p {
     font-size: 16px;
+  }
+
+  .hub-filters {
+    justify-content: flex-start;
   }
 
   .game-card {

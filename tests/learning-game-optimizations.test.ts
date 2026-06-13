@@ -1,4 +1,7 @@
 import { readFileSync } from "node:fs";
+import { getSubjectFilters } from "../apps/hub/filters";
+import { getClockMismatchHint } from "../games/clock-reader";
+import { getEnglishSpellFeedback } from "../games/english-spell-battle";
 import { calculate, formatCardValue } from "../games/make-target";
 import { getMultiplicationGridCount, getNumberBlockCount } from "../games/multiplication-adventure";
 import { getPinyinDamage, PINYIN_MONSTER_ROSTER } from "../games/pinyin-magic-battle";
@@ -85,5 +88,28 @@ describe("learning game optimizations", () => {
     expect(styles).not.toContain("pinyin-" + "bal" + "loon");
     expect(readme).not.toContain("气" + "球");
     expect(styles).toContain("pinyin-damage-pop");
+  });
+
+  it("derives stable subject filters for the hub", () => {
+    expect(
+      getSubjectFilters([
+        { subject: "识字" },
+        { subject: "数学" },
+        { subject: "识字" },
+        { subject: "英语" }
+      ])
+    ).toEqual(["全部", "识字", "数学", "英语"]);
+  });
+
+  it("guides clock practice toward the mismatched hand", () => {
+    expect(getClockMismatchHint({ hour: 3, minute: 15 }, { hour: 4, minute: 15 })).toContain("先看短针");
+    expect(getClockMismatchHint({ hour: 3, minute: 15 }, { hour: 3, minute: 20 })).toContain("再调分针");
+    expect(getClockMismatchHint({ hour: 3, minute: 15 }, { hour: 3, minute: 15 })).toBe("");
+  });
+
+  it("gives English spelling mistakes a next practice step", () => {
+    expect(getEnglishSpellFeedback("cat", "c", 1)).toContain("听一遍 cat");
+    expect(getEnglishSpellFeedback("cat", "cae", 2)).toContain("第 3 个字母");
+    expect(getEnglishSpellFeedback("cat", "cae", 2)).toContain("重新拼");
   });
 });

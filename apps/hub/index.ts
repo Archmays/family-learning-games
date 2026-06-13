@@ -2,9 +2,11 @@ import type { GameDefinition, MountedGame } from "../../packages/game-core";
 import { createLocalStorageStore } from "../../packages/game-core";
 import { gameCatalog } from "../../packages/data/gameCatalog";
 import { clearElement, createButton, createPanel } from "../../packages/ui";
+import { ALL_SUBJECTS_FILTER, getSubjectFilters } from "./filters";
 
 export function mountHub(root: HTMLElement): MountedGame {
   let mountedGame: MountedGame | null = null;
+  let selectedSubject = ALL_SUBJECTS_FILTER;
 
   const renderHub = (): void => {
     mountedGame?.destroy();
@@ -23,14 +25,33 @@ export function mountHub(root: HTMLElement): MountedGame {
     titleGroup.append(title, subtitle);
     header.append(titleGroup);
 
+    const filters = document.createElement("nav");
+    filters.className = "hub-filters";
+    filters.setAttribute("aria-label", "按学科筛选游戏");
+    for (const subject of getSubjectFilters(gameCatalog)) {
+      const isActive = subject === selectedSubject;
+      const button = createButton(subject, () => {
+        selectedSubject = subject;
+        renderHub();
+      }, {
+        className: isActive ? "ui-button learning-game__pill is-active" : "ui-button learning-game__pill"
+      });
+      button.setAttribute("aria-pressed", String(isActive));
+      filters.append(button);
+    }
+
     const grid = document.createElement("main");
     grid.className = "hub-grid";
 
-    for (const game of gameCatalog) {
+    const visibleGames = selectedSubject === ALL_SUBJECTS_FILTER
+      ? gameCatalog
+      : gameCatalog.filter((game) => game.subject === selectedSubject);
+
+    for (const game of visibleGames) {
       grid.append(createGameCard(game, () => openGame(game)));
     }
 
-    root.append(header, grid);
+    root.append(header, filters, grid);
   };
 
   const openGame = (game: GameDefinition): void => {

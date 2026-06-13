@@ -233,7 +233,7 @@ function mountEnglishSpellBattle(context: MountGameContext): MountedGame {
         revealWord = true;
         input = "";
         tiles = createTiles(current.word, level);
-        feedback = { kind: "error", text: `正确首字母是 ${current.word[0]}，完整单词是 ${current.word}。` };
+        feedback = { kind: "error", text: getEnglishSpellFeedback(current.word, tile.letter, level) };
         playFeedbackSound("error");
         render();
       }
@@ -264,7 +264,7 @@ function mountEnglishSpellBattle(context: MountGameContext): MountedGame {
     attempts += 1;
     streak = 0;
     revealWord = true;
-    feedback = { kind: "error", text: `再看一眼：${current.word}，然后重新拼。` };
+    feedback = { kind: "error", text: getEnglishSpellFeedback(current.word, input, level) };
     playFeedbackSound("error");
     tiles = createTiles(current.word, level);
     input = "";
@@ -339,4 +339,24 @@ function shuffle<T>(items: T[]): T[] {
     [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
   }
   return copy;
+}
+
+export function getEnglishSpellFeedback(word: string, attempt: string, level: number): string {
+  if (level === 1) {
+    return `正确首字母是 ${word[0]}，完整单词是 ${word}。听一遍 ${word}，再看图片和意思。`;
+  }
+
+  const firstWrongIndex = findFirstMismatchIndex(word, attempt);
+  const positionText = firstWrongIndex === -1 ? "长度" : `第 ${firstWrongIndex + 1} 个字母`;
+  return `再看一眼：${word}。听一遍 ${word}，检查${positionText}，然后重新拼。`;
+}
+
+function findFirstMismatchIndex(word: string, attempt: string): number {
+  const maxLength = Math.max(word.length, attempt.length);
+  for (let index = 0; index < maxLength; index += 1) {
+    if (word[index] !== attempt[index]) {
+      return index;
+    }
+  }
+  return -1;
 }

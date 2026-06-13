@@ -163,7 +163,7 @@ function mountClockReader(context: MountGameContext): MountedGame {
     }
 
     streak = 0;
-    feedback = { kind: "error", text: `还没对。目标是 ${formatTime(target)}，现在是 ${formatTime(time)}。` };
+    feedback = { kind: "error", text: `还没对。目标是 ${formatTime(target)}，现在是 ${formatTime(time)}。${getClockMismatchHint(target, time)}` };
     playFeedbackSound("error");
     render();
   };
@@ -266,4 +266,14 @@ function formatTime(time: ClockTime): string {
 
 function speakTime(time: ClockTime): void {
   speakText(formatTime(time), "zh-CN", 0.9);
+}
+
+export function getClockMismatchHint(target: ClockTime, current: ClockTime): string {
+  if (target.hour !== current.hour) {
+    return "先看短针，调到目标小时。";
+  }
+  if (target.minute !== current.minute) {
+    return "小时已经对了，再调分针到目标分钟。";
+  }
+  return "";
 }
