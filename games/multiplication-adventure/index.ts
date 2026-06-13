@@ -20,6 +20,8 @@ export const multiplicationAdventureGame: GameDefinition = {
   description: "用小方块理解乘法，再完成 10 道乘法挑战。",
   subject: "数学",
   recommendedAge: "7-9 岁",
+  learningGoal: "理解乘法阵列关系，熟练 1 到 9 的乘法事实。",
+  status: "可玩",
   playLabel: "练乘法",
   mount(context: MountGameContext): MountedGame {
     return mountMultiplicationAdventure(context);

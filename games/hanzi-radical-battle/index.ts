@@ -65,6 +65,8 @@ export const hanziRadicalBattleGame: GameDefinition = {
   description: "组合偏旁部首生成汉字，释放魔法打败怪物。",
   subject: "识字",
   recommendedAge: "6-10 岁",
+  learningGoal: "认识偏旁部首的组合关系，理解汉字结构和常见字义。",
+  status: "可玩",
   playLabel: "挑战偏旁",
   mount(context: MountGameContext): MountedGame {
     return mountHanziRadicalBattle(context);

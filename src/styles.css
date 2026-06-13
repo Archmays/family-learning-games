@@ -1051,8 +1051,17 @@ button {
   padding: 22px;
 }
 
-.game-card__subject {
-  width: fit-content;
+.game-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.game-card__subject,
+.game-card__status {
+  display: inline-flex;
+  align-items: center;
   margin-bottom: 16px;
   border: 2px solid #2f78b8;
   border-radius: 999px;
@@ -1061,6 +1070,17 @@ button {
   padding: 5px 12px;
   font-size: 14px;
   font-weight: 900;
+}
+
+.game-card__meta .game-card__subject,
+.game-card__meta .game-card__status {
+  margin-bottom: 0;
+}
+
+.game-card__status {
+  border-color: #c78a35;
+  background: #fff7d7;
+  color: #6b3f15;
 }
 
 .game-card h2 {
@@ -1076,6 +1096,12 @@ button {
   font-size: 17px;
   line-height: 1.55;
   font-weight: 700;
+}
+
+.game-card__goal {
+  margin-top: 12px;
+  color: #25313b;
+  font-weight: 900;
 }
 
 .game-card__age {

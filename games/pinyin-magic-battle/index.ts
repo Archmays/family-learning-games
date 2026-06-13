@@ -212,6 +212,8 @@ export const pinyinMagicBattleGame: GameDefinition = {
   description: "看汉字、读拼音，再进入勇者试炼打败拼音怪兽。",
   subject: "识字",
   recommendedAge: "6-8 岁",
+  learningGoal: "练习常见汉字拼音、声调辨认和认读反应。",
+  status: "可玩",
   playLabel: "练拼音",
   mount(context: MountGameContext): MountedGame {
     return mountPinyinMagicBattle(context);

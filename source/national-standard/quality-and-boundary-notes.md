@@ -1,12 +1,12 @@
-﻿# Quality And Boundary Notes
+# Quality And Boundary Notes
 
 生成日期：2026-06-08
 
 ## 当前质量状态
 
-- source/national-standard/ 原始文件：383 个，已完整打包。
-- source/national-standard-processed/ processed layer：存在，但只有少量 processed 文件。
-- knowledge/cards/resource-cards-full-national-standard.jsonl：441 条，其中 383 条 document-level cards，58 条 existing outcome-level cards。
+- `source/national-standard/` 原始文件：383 个，已完整打包。
+- processed layer：存在，但只有少量 processed 文件。
+- `knowledge/cards/resource-cards-full-national-standard.jsonl`：441 条，其中 383 条 document-level cards，58 条 existing outcome-level cards。
 - standards alignment status：document_level_plus_partial_outcomes。
 - full outcome extraction：pending。
 
@@ -22,16 +22,15 @@
 - 不把游戏完成写成学业达标。
 - 不把 document-level card 写成 exact outcome。
 - 不从本包直接生成 child-facing final learning material。
-- 不写入 progress-ledger.jsonl。
+- 不写入正式学习记录。
 
 ## Canada BC 路径风险
 
-现有 national-standard card 中 234 条 Canada BC source_path 仍指向旧目录名。包内 standards-source-index.csv 使用文件系统实际路径，并在 
-otes 字段中标记：original_card_uses_old_canada_bc_path。
+现有 national-standard card 中部分 Canada BC source_path 仍指向旧目录名。包内 `standards-source-index.csv` 使用文件系统实际路径，并在 notes 字段中标记旧路径情况。
 
 ## 后续扩展建议
 
-如果【黄家游戏】需要某个主题做到正式课程对齐，应按下面顺序扩展：
+如果学习游戏需要某个主题做到正式课程对齐，应按下面顺序扩展：
 
 1. 选定一个 subject 和 age band。
 2. 从原始标准文件抽取 outcome-level records。

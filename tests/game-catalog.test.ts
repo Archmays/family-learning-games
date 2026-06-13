@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { englishWords, hanziWheelSets, pinyinCards } from "../packages/data/learningGames";
 import { MEMORY_CARD_PAIR_COUNT, memoryCardSets, pickMemoryCardPairs } from "../packages/data/memoryCards";
 
@@ -20,6 +20,27 @@ describe("game catalog", () => {
     expect(pinyinCards.length).toBeGreaterThanOrEqual(60);
     expect(hanziWheelSets.length).toBe(9);
     expect(hanziWheelSets.every((set) => set.char.validPairs.length > 0 && set.word.validPairs.length > 0)).toBe(true);
+  });
+
+  it("keeps every catalog game documented for the hub", () => {
+    const gameDirs = readdirSync("games", { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name);
+
+    expect(gameDirs).toHaveLength(9);
+
+    for (const gameDir of gameDirs) {
+      const source = readFileSync(`games/${gameDir}/index.ts`, "utf8");
+      const readme = readFileSync(`games/${gameDir}/README.md`, "utf8");
+
+      for (const field of ["id", "title", "description", "subject", "recommendedAge", "learningGoal", "status"]) {
+        expect(source, `${gameDir} ${field}`).toContain(`${field}:`);
+      }
+
+      for (const heading of ["## 游戏目标", "## 适合对象", "## 玩法说明", "## 涉及知识点", "## 设备适配", "## 当前完成度", "## 后续改进建议", "## 接入方式"]) {
+        expect(readme, `${gameDir} ${heading}`).toContain(heading);
+      }
+    }
   });
 
   it("keeps memory card grade sets aligned with hanzi wheel grades", () => {

@@ -18,6 +18,8 @@ export const hanziWheelGame: GameDefinition = {
   description: "转动内外两圈部件，观察它们能组成什么汉字或词语。",
   subject: "识字",
   recommendedAge: "6-15 岁",
+  learningGoal: "观察汉字部件组合，练习读音、例词和构词理解。",
+  status: "可玩",
   playLabel: "开始转盘",
   mount(context: MountGameContext): MountedGame {
     return mountHanziWheel(context);

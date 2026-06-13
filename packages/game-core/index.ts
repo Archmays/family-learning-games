@@ -14,6 +14,8 @@ export interface GameDefinition {
   description: string;
   subject: string;
   recommendedAge: string;
+  learningGoal: string;
+  status: string;
   playLabel?: string;
   mount: (context: MountGameContext) => MountedGame;
 }

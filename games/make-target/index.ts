@@ -26,6 +26,8 @@ export const makeTargetGame: GameDefinition = {
   description: "选择数字和运算符，把一手牌一步步合成目标数。",
   subject: "数学",
   recommendedAge: "7-10 岁",
+  learningGoal: "练习数感、四则运算顺序和目标数推理。",
+  status: "可玩",
   playLabel: "开始凑数",
   mount(context: MountGameContext): MountedGame {
     return mountMakeTarget(context);

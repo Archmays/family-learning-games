@@ -26,6 +26,8 @@ export const memoryCardGame: GameDefinition = {
   description: "翻开卡片，找到相同的字形和图像线索，练习观察和记忆。",
   subject: "识字",
   recommendedAge: "4-8 岁",
+  learningGoal: "通过配对翻牌练习观察、短时记忆和汉字字形辨认。",
+  status: "可玩原型",
   playLabel: "开始翻牌",
   mount(context: MountGameContext): MountedGame {
     return mountMemoryCard(context);

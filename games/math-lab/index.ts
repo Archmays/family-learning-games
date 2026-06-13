@@ -8,6 +8,8 @@ export const mathLabGame: GameDefinition = {
   description: "进入苹果园、甜点屋、小河、图书馆和集市，用加减法完成场景任务。",
   subject: "数学",
   recommendedAge: "6-9 岁",
+  learningGoal: "在场景任务中练习加减法、数量关系和简单两步推理。",
+  status: "可玩",
   playLabel: "进入数学游戏",
   mount(context: MountGameContext): MountedGame {
     return mountMathLab(context);

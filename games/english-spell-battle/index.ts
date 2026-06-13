@@ -22,6 +22,8 @@ export const englishSpellBattleGame: GameDefinition = {
   description: "看图听词，从首字母到完整拼写逐步练习 Raz aa-A 词汇。",
   subject: "英语",
   recommendedAge: "5-9 岁",
+  learningGoal: "通过图像、发音和拼写练习常见英语词汇。",
+  status: "可玩",
   playLabel: "开始拼写",
   mount(context: MountGameContext): MountedGame {
     return mountEnglishSpellBattle(context);

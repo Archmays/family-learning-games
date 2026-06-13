@@ -19,6 +19,8 @@ export const clockReaderGame: GameDefinition = {
   description: "观察 60 个分钟刻度，拨动时针和分针，学习整点、半点和 5 分钟时间。",
   subject: "数学",
   recommendedAge: "5-7 岁",
+  learningGoal: "认识整点、半点和 5 分钟刻度，能把表盘时间读出来。",
+  status: "可玩",
   playLabel: "拨时钟",
   mount(context: MountGameContext): MountedGame {
     return mountClockReader(context);

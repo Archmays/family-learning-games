@@ -1,9 +1,9 @@
 ﻿{
-    "package_id":  "huang-family-game-standards-pack",
+    "package_id":  "learning-game-standards-pack",
     "package_version":  "2026-06-08",
     "generated_at":  "2026-06-08T00:00:00+08:00",
-    "package_root":  "output/huang-family-game-standards-pack/2026-06-08",
-    "archive_filename":  "huang-family-game-standards-pack-2026-06-08.zip",
+    "package_root":  "output/learning-game-standards-pack/2026-06-08",
+    "archive_filename":  "learning-game-standards-pack-2026-06-08.zip",
     "source_scope":  "source/national-standard full raw originals plus existing processed/index layers",
     "manifest_note":  "package_manifest.json and archive file are not included in the self-referential files list; package_manifest.json is included in the zip.",
     "boundary":  {
@@ -2400,22 +2400,22 @@
                       "sha256":  "871fc398fc99f449780d15c743bc0d4f601d838033875a46f7bd3fe47598d44d"
                   },
                   {
-                      "package_path":  "huang-family-game-standards-reference.md",
+                      "package_path":  "learning-game-standards-reference.md",
                       "source_path":  "generated",
-                      "size_bytes":  4754,
-                      "sha256":  "f1fbe0e3d21a4a2650ea8bf70e6ddb01e36c2a744af48f04e5bf3b25cd7f3f14"
+                      "size_bytes":  4516,
+                      "sha256":  "5c5e7227b8c834161bd28c303ac6d10f0fd37f534db655e58778cd8a92c95716"
                   },
                   {
                       "package_path":  "quality-and-boundary-notes.md",
                       "source_path":  "generated",
-                      "size_bytes":  1865,
-                      "sha256":  "63594c0777eb589cedfcfce089beb029a92b01637ba5725a6b670a3206c75a07"
+                      "size_bytes":  1794,
+                      "sha256":  "720996e56125d59294156b8efc1306004980866fc6dd5d33088e5dff73fba149"
                   },
                   {
                       "package_path":  "README.md",
                       "source_path":  "generated",
-                      "size_bytes":  1875,
-                      "sha256":  "c91ef4a922d6f5558b1f502b15eabff5c813c62dc9995b79b65d6628c1a67ecc"
+                      "size_bytes":  1734,
+                      "sha256":  "ed765521a56fa3ae5e9eedca47a2565952e53ec21985b0101437ca07eb54b7c8"
                   },
                   {
                       "package_path":  "standards-source-index.csv",
