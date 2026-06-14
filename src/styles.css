@@ -887,6 +887,10 @@
 }
 
 @media (max-width: 760px) {
+  .hanzi-radical-character-screen {
+    align-content: start;
+  }
+
   .hanzi-radical-character-grid {
     grid-template-columns: 1fr;
     width: min(420px, 100%);
@@ -1199,7 +1203,9 @@ button {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .memory-card-game {
