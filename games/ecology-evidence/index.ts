@@ -1,6 +1,7 @@
-import type { GameDefinition, MountGameContext, MountedGame } from "../../packages/game-core";
+import { pickRoundItems, type GameDefinition, type MountGameContext, type MountedGame } from "../../packages/game-core";
 import { clearElement, createButton, createFeedbackBanner, createStatus, playFeedbackSound } from "../../packages/ui";
 import type { FeedbackState } from "../../packages/ui";
+import { buildEcologyScenes } from "./data";
 
 type EcologyKind = "energy" | "eaten" | "helper" | "population" | "producer" | "leaf" | "habitat" | "decomposer";
 type EcologyIcon = "sun" | "grass" | "bug" | "bird" | "leaf" | "microbe" | "soil" | "water" | "wood";
@@ -32,6 +33,7 @@ interface SceneVisual {
 }
 
 interface EcologyScene {
+  id: string;
   kind: EcologyKind;
   title: string;
   visual: SceneVisual;
@@ -41,8 +43,9 @@ interface EcologyScene {
   choices: EcologyChoice[];
 }
 
-export const ecologyScenes: EcologyScene[] = [
+const ecologySceneSeeds: EcologyScene[] = [
   {
+    id: "energy-arrow",
     kind: "energy",
     title: "能量箭头",
     visual: {
@@ -69,6 +72,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "eaten-arrow",
     kind: "eaten",
     title: "谁被谁吃",
     visual: {
@@ -90,6 +94,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "hidden-helper",
     kind: "helper",
     title: "看不见的小帮手",
     visual: {
@@ -114,6 +119,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "population-change",
     kind: "population",
     title: "数量变化",
     visual: {
@@ -135,6 +141,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "producer-sun",
     kind: "producer",
     title: "谁会自己制造养分",
     visual: {
@@ -156,6 +163,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "leaf-evidence",
     kind: "leaf",
     title: "叶片证据",
     visual: {
@@ -177,6 +185,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "habitat-water",
     kind: "habitat",
     title: "住在哪里",
     visual: {
@@ -198,6 +207,7 @@ export const ecologyScenes: EcologyScene[] = [
     ]
   },
   {
+    id: "decomposer-wood",
     kind: "decomposer",
     title: "枯木慢慢变软",
     visual: {
@@ -223,6 +233,13 @@ export const ecologyScenes: EcologyScene[] = [
   }
 ];
 
+export const ECOLOGY_ROUND_SIZE = 8;
+export const ecologyScenes: EcologyScene[] = buildEcologyScenes(ecologySceneSeeds);
+
+export function pickEcologyRound(random: () => number = Math.random): EcologyScene[] {
+  return pickRoundItems(ecologyScenes, ECOLOGY_ROUND_SIZE, random);
+}
+
 export const ecologyEvidenceGame: GameDefinition = {
   id: "ecology-evidence",
   title: "生态证据侦探",
@@ -246,19 +263,20 @@ function mountEcologyEvidence(context: MountGameContext): MountedGame {
   let score = 0;
   let answered = false;
   let completed = false;
+  let roundScenes = pickEcologyRound();
   let feedback: FeedbackState = { kind: "info", text: "先看图，再点你能用证据说明的答案。" };
 
   const render = (): void => {
-    const scene = ecologyScenes[sceneIndex];
+    const scene = roundScenes[sceneIndex];
     clearElement(root);
     root.append(createHeader("生态证据侦探", "亲子共玩：孩子先说图上证据，再点答案。"));
 
     const stats = document.createElement("div");
     stats.className = "learning-game__stats";
-    stats.append(createStatus("题目", `${sceneIndex + 1}/${ecologyScenes.length}`), createStatus("证据星", score));
+    stats.append(createStatus("题目", `${sceneIndex + 1}/${roundScenes.length}`), createStatus("证据星", score));
 
     if (completed) {
-      root.append(stats, createCompletionCard(getEcologyCompletionSummary(score), score, ecologyScenes.length, restart, context.onExit));
+      root.append(stats, createCompletionCard(getEcologyCompletionSummary(score, roundScenes.length), score, roundScenes.length, restart, context.onExit));
       return;
     }
 
@@ -282,7 +300,7 @@ function mountEcologyEvidence(context: MountGameContext): MountedGame {
     const actions = document.createElement("div");
     actions.className = "learning-game__actions";
     actions.append(
-      createButton(sceneIndex === ecologyScenes.length - 1 ? "完成本轮" : "下一题", nextScene, {
+      createButton(sceneIndex === roundScenes.length - 1 ? "完成本轮" : "下一题", nextScene, {
         className: "ui-button ui-button--secondary",
         disabled: !answered
       })
@@ -295,7 +313,7 @@ function mountEcologyEvidence(context: MountGameContext): MountedGame {
     if (answered) {
       return;
     }
-    const scene = ecologyScenes[sceneIndex];
+    const scene = roundScenes[sceneIndex];
     answered = true;
     if (choiceId === scene.correctId) {
       score += 1;
@@ -309,7 +327,7 @@ function mountEcologyEvidence(context: MountGameContext): MountedGame {
   };
 
   const nextScene = (): void => {
-    if (sceneIndex === ecologyScenes.length - 1) {
+    if (sceneIndex === roundScenes.length - 1) {
       completed = true;
       render();
       return;
@@ -322,6 +340,7 @@ function mountEcologyEvidence(context: MountGameContext): MountedGame {
   };
 
   const restart = (): void => {
+    roundScenes = pickEcologyRound();
     sceneIndex = 0;
     score = 0;
     answered = false;
@@ -339,8 +358,8 @@ function mountEcologyEvidence(context: MountGameContext): MountedGame {
   };
 }
 
-export function getEcologyCompletionSummary(score: number): string {
-  return `完成 ${ecologyScenes.length} 个证据任务，证据星 ${score}/${ecologyScenes.length}。和孩子一起复盘：先看哪条证据，再点“重新开始”再玩一轮。`;
+export function getEcologyCompletionSummary(score: number, total: number = ecologyScenes.length): string {
+  return `完成 ${total} 个证据任务，证据星 ${score}/${total}。和孩子一起复盘：先看哪条证据，再点“重新开始”再玩一轮。`;
 }
 
 function createCompletionCard(summary: string, score: number, total: number, onRestart: () => void, onExit: () => void): HTMLElement {

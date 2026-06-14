@@ -1,6 +1,7 @@
-import type { GameDefinition, MountGameContext, MountedGame } from "../../packages/game-core";
+import { pickRoundItems, type GameDefinition, type MountGameContext, type MountedGame } from "../../packages/game-core";
 import { clearElement, createButton, createFeedbackBanner, createStatus, playFeedbackSound, speakText } from "../../packages/ui";
 import type { FeedbackState } from "../../packages/ui";
+import { buildActionScenes } from "./data";
 
 type ActionWord = "stop" | "help" | "no" | "turn";
 type ActionIcon = "traffic-light" | "stop-hand" | "helper-adult" | "child" | "candy" | "hot-cup" | "queue" | "toy" | "door" | "turn-arrow";
@@ -28,7 +29,7 @@ interface ActionScene {
 
 const actionWords: ActionWord[] = ["stop", "help", "no", "turn"];
 
-export const actionScenes: ActionScene[] = [
+const actionSceneSeeds: ActionScene[] = [
   {
     id: "red-light",
     title: "红灯路口",
@@ -181,6 +182,13 @@ export const actionScenes: ActionScene[] = [
   }
 ];
 
+export const ACTION_PATH_ROUND_SIZE = 10;
+export const actionScenes: ActionScene[] = buildActionScenes(actionSceneSeeds);
+
+export function pickActionPathRound(random: () => number = Math.random): ActionScene[] {
+  return pickRoundItems(actionScenes, ACTION_PATH_ROUND_SIZE, random);
+}
+
 export const actionPathGame: GameDefinition = {
   id: "action-path",
   title: "Stop/Help 动作小路",
@@ -204,19 +212,20 @@ function mountActionPath(context: MountGameContext): MountedGame {
   let stars = 0;
   let answered = false;
   let completed = false;
+  let roundScenes = pickActionPathRound();
   let feedback: FeedbackState = { kind: "info", text: "家长读场景，孩子点英文词，也可以先做动作。" };
 
   const render = (): void => {
-    const scene = actionScenes[sceneIndex];
+    const scene = roundScenes[sceneIndex];
     clearElement(root);
     root.append(createHeader("Stop/Help 动作小路", "RAZ aa：只用单词、短句和成人口头输入。"));
 
     const stats = document.createElement("div");
     stats.className = "learning-game__stats";
-    stats.append(createStatus("场景", `${sceneIndex + 1}/${actionScenes.length}`), createStatus("星星", stars));
+    stats.append(createStatus("场景", `${sceneIndex + 1}/${roundScenes.length}`), createStatus("星星", stars));
 
     if (completed) {
-      root.append(stats, createCompletionCard(getActionPathCompletionSummary(stars), stars, actionScenes.length, restart, context.onExit));
+      root.append(stats, createCompletionCard(getActionPathCompletionSummary(stars, roundScenes.length), stars, roundScenes.length, restart, context.onExit));
       return;
     }
 
@@ -241,7 +250,7 @@ function mountActionPath(context: MountGameContext): MountedGame {
     actions.className = "learning-game__actions";
     actions.append(
       createButton("听英文", () => speakText(scene.correctWord, "en-US", 0.75), { className: "ui-button ui-button--secondary" }),
-      createButton(sceneIndex === actionScenes.length - 1 ? "完成本轮" : "下一站", nextScene, {
+      createButton(sceneIndex === roundScenes.length - 1 ? "完成本轮" : "下一站", nextScene, {
         className: "ui-button ui-button--secondary",
         disabled: !answered
       })
@@ -254,7 +263,7 @@ function mountActionPath(context: MountGameContext): MountedGame {
     if (answered) {
       return;
     }
-    const scene = actionScenes[sceneIndex];
+    const scene = roundScenes[sceneIndex];
     answered = true;
     if (word === scene.correctWord) {
       stars += 1;
@@ -269,7 +278,7 @@ function mountActionPath(context: MountGameContext): MountedGame {
   };
 
   const nextScene = (): void => {
-    if (sceneIndex === actionScenes.length - 1) {
+    if (sceneIndex === roundScenes.length - 1) {
       completed = true;
       render();
       return;
@@ -282,6 +291,7 @@ function mountActionPath(context: MountGameContext): MountedGame {
   };
 
   const restart = (): void => {
+    roundScenes = pickActionPathRound();
     sceneIndex = 0;
     stars = 0;
     answered = false;
@@ -300,8 +310,8 @@ function mountActionPath(context: MountGameContext): MountedGame {
   };
 }
 
-export function getActionPathCompletionSummary(stars: number): string {
-  return `完成 ${actionScenes.length} 个动作场景，星星 ${stars}/${actionScenes.length}。请孩子复述 stop、help、no、turn，再点“重新开始”再走一轮。`;
+export function getActionPathCompletionSummary(stars: number, total: number = actionScenes.length): string {
+  return `完成 ${total} 个动作场景，星星 ${stars}/${total}。请孩子复述 stop、help、no、turn，再点“重新开始”再走一轮。`;
 }
 
 function createCompletionCard(summary: string, stars: number, total: number, onRestart: () => void, onExit: () => void): HTMLElement {

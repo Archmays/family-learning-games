@@ -1,10 +1,28 @@
 import { readFileSync } from "node:fs";
-import { actionPathGame, actionScenes, getActionPathCompletionSummary, getActionPathFeedback } from "../games/action-path";
-import { ecologyEvidenceGame, ecologyScenes, getEcologyCompletionSummary, getEcologyEvidenceFeedback } from "../games/ecology-evidence";
 import {
+  ACTION_PATH_ROUND_SIZE,
+  actionPathGame,
+  actionScenes,
+  getActionPathCompletionSummary,
+  getActionPathFeedback,
+  pickActionPathRound
+} from "../games/action-path";
+import {
+  ECOLOGY_ROUND_SIZE,
+  ecologyEvidenceGame,
+  ecologyScenes,
+  getEcologyCompletionSummary,
+  getEcologyEvidenceFeedback,
+  pickEcologyRound
+} from "../games/ecology-evidence";
+import {
+  ELAPSED_CHALLENGE_ROUND_SIZE,
+  SCHEDULE_TASK_ROUND_SIZE,
   elapsedChallenges,
   getElapsedTimeBreakdown,
   getTimeSchedulerCompletionSummary,
+  pickElapsedChallengeRound,
+  pickScheduleTaskRound,
   scheduleTasks,
   timeSchedulerGame
 } from "../games/time-scheduler";
@@ -25,11 +43,44 @@ const actionIcons = [
 const timeIcons = ["clock", "backpack", "sentence-card", "wash-hands", "gamepad", "desk", "sleep", "time-line"] as const;
 
 describe("new family learning prototypes", () => {
-  it("has enough content for short repeatable home sessions", () => {
-    expect(ecologyScenes.length).toBeGreaterThanOrEqual(8);
-    expect(actionScenes.length).toBeGreaterThanOrEqual(10);
-    expect(scheduleTasks.length).toBeGreaterThanOrEqual(6);
-    expect(elapsedChallenges.length).toBeGreaterThanOrEqual(3);
+  it("expands the three content banks to 50x their previous size", () => {
+    expect(actionScenes).toHaveLength(500);
+    expect(ecologyScenes).toHaveLength(400);
+    expect(scheduleTasks).toHaveLength(300);
+    expect(elapsedChallenges).toHaveLength(150);
+  });
+
+  it("keeps generated content ids unique", () => {
+    expectUniqueIds(actionScenes);
+    expectUniqueIds(ecologyScenes);
+    expectUniqueIds(scheduleTasks);
+    expectUniqueIds(elapsedChallenges);
+  });
+
+  it("samples short varied rounds from the larger content banks", () => {
+    const firstActionRound = pickActionPathRound(() => 0);
+    const secondActionRound = pickActionPathRound(() => 0.99);
+    const firstEcologyRound = pickEcologyRound(() => 0);
+    const secondEcologyRound = pickEcologyRound(() => 0.99);
+    const firstScheduleRound = pickScheduleTaskRound(() => 0);
+    const secondScheduleRound = pickScheduleTaskRound(() => 0.99);
+    const firstElapsedRound = pickElapsedChallengeRound(() => 0);
+    const secondElapsedRound = pickElapsedChallengeRound(() => 0.99);
+
+    expect(firstActionRound).toHaveLength(ACTION_PATH_ROUND_SIZE);
+    expect(firstEcologyRound).toHaveLength(ECOLOGY_ROUND_SIZE);
+    expect(firstScheduleRound).toHaveLength(SCHEDULE_TASK_ROUND_SIZE);
+    expect(firstElapsedRound).toHaveLength(ELAPSED_CHALLENGE_ROUND_SIZE);
+
+    expectUniqueIds(firstActionRound);
+    expectUniqueIds(firstEcologyRound);
+    expectUniqueIds(firstScheduleRound);
+    expectUniqueIds(firstElapsedRound);
+
+    expect(firstActionRound.map((scene) => scene.id).join("|")).not.toBe(secondActionRound.map((scene) => scene.id).join("|"));
+    expect(firstEcologyRound.map((scene) => scene.id).join("|")).not.toBe(secondEcologyRound.map((scene) => scene.id).join("|"));
+    expect(firstScheduleRound.map((task) => task.id).join("|")).not.toBe(secondScheduleRound.map((task) => task.id).join("|"));
+    expect(firstElapsedRound.map((challenge) => challenge.id).join("|")).not.toBe(secondElapsedRound.map((challenge) => challenge.id).join("|"));
   });
 
   it("marks the three upgraded learning games as playable", () => {
@@ -39,19 +90,23 @@ describe("new family learning prototypes", () => {
   });
 
   it("provides completion summaries for a full round restart flow", () => {
-    expect(getEcologyCompletionSummary(6)).toContain(`完成 ${ecologyScenes.length}`);
-    expect(getEcologyCompletionSummary(6)).toContain("6");
-    expect(getEcologyCompletionSummary(6)).toContain("重新开始");
+    expect(getEcologyCompletionSummary(6, ECOLOGY_ROUND_SIZE)).toContain(`完成 ${ECOLOGY_ROUND_SIZE}`);
+    expect(getEcologyCompletionSummary(6, ECOLOGY_ROUND_SIZE)).toContain("6");
+    expect(getEcologyCompletionSummary(6, ECOLOGY_ROUND_SIZE)).toContain("重新开始");
 
-    expect(getActionPathCompletionSummary(8)).toContain(`完成 ${actionScenes.length}`);
-    expect(getActionPathCompletionSummary(8)).toContain("8");
-    expect(getActionPathCompletionSummary(8)).toContain("重新开始");
+    expect(getActionPathCompletionSummary(8, ACTION_PATH_ROUND_SIZE)).toContain(`完成 ${ACTION_PATH_ROUND_SIZE}`);
+    expect(getActionPathCompletionSummary(8, ACTION_PATH_ROUND_SIZE)).toContain("8");
+    expect(getActionPathCompletionSummary(8, ACTION_PATH_ROUND_SIZE)).toContain("重新开始");
 
-    const totalTimeTasks = scheduleTasks.length + elapsedChallenges.length;
-    expect(getTimeSchedulerCompletionSummary(7)).toContain(`完成 ${scheduleTasks.length}`);
-    expect(getTimeSchedulerCompletionSummary(7)).toContain(`${elapsedChallenges.length}`);
-    expect(getTimeSchedulerCompletionSummary(7)).toContain(`${totalTimeTasks}`);
-    expect(getTimeSchedulerCompletionSummary(7)).toContain("重新开始");
+    const totalTimeTasks = SCHEDULE_TASK_ROUND_SIZE + ELAPSED_CHALLENGE_ROUND_SIZE;
+    expect(getTimeSchedulerCompletionSummary(7, SCHEDULE_TASK_ROUND_SIZE, ELAPSED_CHALLENGE_ROUND_SIZE)).toContain(
+      `完成 ${SCHEDULE_TASK_ROUND_SIZE}`
+    );
+    expect(getTimeSchedulerCompletionSummary(7, SCHEDULE_TASK_ROUND_SIZE, ELAPSED_CHALLENGE_ROUND_SIZE)).toContain(
+      `${ELAPSED_CHALLENGE_ROUND_SIZE}`
+    );
+    expect(getTimeSchedulerCompletionSummary(7, SCHEDULE_TASK_ROUND_SIZE, ELAPSED_CHALLENGE_ROUND_SIZE)).toContain(`${totalTimeTasks}`);
+    expect(getTimeSchedulerCompletionSummary(7, SCHEDULE_TASK_ROUND_SIZE, ELAPSED_CHALLENGE_ROUND_SIZE)).toContain("重新开始");
   });
 
   it("uses structured visual boards instead of one-line emoji pictures", () => {
@@ -99,4 +154,22 @@ describe("new family learning prototypes", () => {
       totalMinutes: 90
     });
   });
+
+  it("keeps every multiple-choice item answerable", () => {
+    expect(actionScenes.every((scene) => ["stop", "help", "no", "turn"].includes(scene.correctWord))).toBe(true);
+    expect(ecologyScenes.every((scene) => scene.choices.some((choice) => choice.id === scene.correctId))).toBe(true);
+    expect(scheduleTasks.every((task) => timeSlotIds.has(task.correctSlot))).toBe(true);
+
+    for (const challenge of elapsedChallenges) {
+      const correct = getElapsedTimeBreakdown(challenge.start, challenge.end);
+      const matchingChoices = challenge.choices.filter((choice) => choice.hours === correct.hours && choice.minutes === correct.minutes);
+      expect(matchingChoices, challenge.id).toHaveLength(1);
+    }
+  });
 });
+
+const timeSlotIds = new Set(["before-leaving", "morning-reading", "before-lunch", "after-lunch", "after-dinner", "before-sleep"]);
+
+function expectUniqueIds(items: readonly { id: string }[]): void {
+  expect(new Set(items.map((item) => item.id)).size).toBe(items.length);
+}

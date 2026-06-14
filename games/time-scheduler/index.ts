@@ -1,6 +1,7 @@
-import type { GameDefinition, MountGameContext, MountedGame } from "../../packages/game-core";
+import { pickRoundItems, type GameDefinition, type MountGameContext, type MountedGame } from "../../packages/game-core";
 import { clearElement, createButton, createFeedbackBanner, createStatus, playFeedbackSound } from "../../packages/ui";
 import type { FeedbackState } from "../../packages/ui";
+import { buildElapsedChallenges, buildScheduleTasks } from "./data";
 
 type TimeIcon = "clock" | "backpack" | "sentence-card" | "wash-hands" | "gamepad" | "desk" | "sleep" | "time-line";
 
@@ -64,7 +65,7 @@ const timeSlots: TimeSlot[] = [
   { id: "before-sleep", label: "21:00 睡觉前" }
 ];
 
-export const scheduleTasks: ScheduleTask[] = [
+const scheduleTaskSeeds: ScheduleTask[] = [
   {
     id: "pack",
     title: "整理书包",
@@ -157,7 +158,7 @@ export const scheduleTasks: ScheduleTask[] = [
   }
 ];
 
-export const elapsedChallenges: ElapsedChallenge[] = [
+const elapsedChallengeSeeds: ElapsedChallenge[] = [
   {
     id: "morning-gap",
     start: "08:40",
@@ -196,6 +197,19 @@ export const elapsedChallenges: ElapsedChallenge[] = [
   }
 ];
 
+export const SCHEDULE_TASK_ROUND_SIZE = 6;
+export const ELAPSED_CHALLENGE_ROUND_SIZE = 3;
+export const scheduleTasks: ScheduleTask[] = buildScheduleTasks(scheduleTaskSeeds);
+export const elapsedChallenges: ElapsedChallenge[] = buildElapsedChallenges(elapsedChallengeSeeds);
+
+export function pickScheduleTaskRound(random: () => number = Math.random): ScheduleTask[] {
+  return pickRoundItems(scheduleTasks, SCHEDULE_TASK_ROUND_SIZE, random);
+}
+
+export function pickElapsedChallengeRound(random: () => number = Math.random): ElapsedChallenge[] {
+  return pickRoundItems(elapsedChallenges, ELAPSED_CHALLENGE_ROUND_SIZE, random);
+}
+
 export const timeSchedulerGame: GameDefinition = {
   id: "time-scheduler",
   title: "时间任务调度员",
@@ -221,6 +235,8 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
   let answered = false;
   let elapsedMode = false;
   let completed = false;
+  let roundScheduleTasks = pickScheduleTaskRound();
+  let roundElapsedChallenges = pickElapsedChallengeRound();
   let feedback: FeedbackState = { kind: "info", text: "先读任务要求，再选择合适时间。" };
 
   const render = (): void => {
@@ -233,12 +249,22 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
       createStatus("任务星", score),
       createStatus(
         "阶段",
-        completed ? "已完成" : elapsedMode ? `经过时间 ${elapsedIndex + 1}/${elapsedChallenges.length}` : `${taskIndex + 1}/${scheduleTasks.length}`
+        completed ? "已完成" : elapsedMode ? `经过时间 ${elapsedIndex + 1}/${roundElapsedChallenges.length}` : `${taskIndex + 1}/${roundScheduleTasks.length}`
       )
     );
 
     if (completed) {
-      root.append(stats, createCompletionCard(getTimeSchedulerCompletionSummary(score), score, restart, context.onExit));
+      root.append(
+        stats,
+        createCompletionCard(
+          getTimeSchedulerCompletionSummary(score, roundScheduleTasks.length, roundElapsedChallenges.length),
+          score,
+          roundScheduleTasks.length,
+          roundElapsedChallenges.length,
+          restart,
+          context.onExit
+        )
+      );
       return;
     }
 
@@ -247,7 +273,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
       return;
     }
 
-    const task = scheduleTasks[taskIndex];
+    const task = roundScheduleTasks[taskIndex];
     const card = document.createElement("section");
     card.className = "learning-game__result time-card";
     const title = document.createElement("h3");
@@ -265,7 +291,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
     const actions = document.createElement("div");
     actions.className = "learning-game__actions";
     actions.append(
-      createButton(taskIndex === scheduleTasks.length - 1 ? "算经过时间" : "下一项", nextTask, {
+      createButton(taskIndex === roundScheduleTasks.length - 1 ? "算经过时间" : "下一项", nextTask, {
         className: "ui-button ui-button--secondary",
         disabled: !answered
       })
@@ -275,7 +301,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
   };
 
   const renderElapsedChallenge = (stats: HTMLElement): void => {
-    const challenge = elapsedChallenges[elapsedIndex];
+    const challenge = roundElapsedChallenges[elapsedIndex];
     const breakdown = getElapsedTimeBreakdown(challenge.start, challenge.end);
     const card = document.createElement("section");
     card.className = "learning-game__result time-card";
@@ -294,7 +320,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
     const actions = document.createElement("div");
     actions.className = "learning-game__actions";
     actions.append(
-      createButton(elapsedIndex === elapsedChallenges.length - 1 ? "完成本轮" : "下一题", nextElapsed, {
+      createButton(elapsedIndex === roundElapsedChallenges.length - 1 ? "完成本轮" : "下一题", nextElapsed, {
         className: "ui-button ui-button--secondary",
         disabled: !answered
       })
@@ -307,7 +333,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
     if (answered) {
       return;
     }
-    const task = scheduleTasks[taskIndex];
+    const task = roundScheduleTasks[taskIndex];
     answered = true;
     if (slotId === task.correctSlot) {
       score += 1;
@@ -324,7 +350,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
     if (answered) {
       return;
     }
-    const challenge = elapsedChallenges[elapsedIndex];
+    const challenge = roundElapsedChallenges[elapsedIndex];
     const breakdown = getElapsedTimeBreakdown(challenge.start, challenge.end);
     answered = true;
     if (hours === breakdown.hours && minutes === breakdown.minutes) {
@@ -340,7 +366,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
 
   const nextTask = (): void => {
     answered = false;
-    if (taskIndex === scheduleTasks.length - 1) {
+    if (taskIndex === roundScheduleTasks.length - 1) {
       elapsedMode = true;
       elapsedIndex = 0;
       feedback = { kind: "info", text: "现在算经过时间：先跳整小时，再算分钟。" };
@@ -353,7 +379,7 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
 
   const nextElapsed = (): void => {
     answered = false;
-    if (elapsedIndex === elapsedChallenges.length - 1) {
+    if (elapsedIndex === roundElapsedChallenges.length - 1) {
       completed = true;
       render();
       return;
@@ -364,6 +390,8 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
   };
 
   const restart = (): void => {
+    roundScheduleTasks = pickScheduleTaskRound();
+    roundElapsedChallenges = pickElapsedChallengeRound();
     taskIndex = 0;
     elapsedIndex = 0;
     score = 0;
@@ -383,13 +411,24 @@ function mountTimeScheduler(context: MountGameContext): MountedGame {
   };
 }
 
-export function getTimeSchedulerCompletionSummary(score: number): string {
-  const total = scheduleTasks.length + elapsedChallenges.length;
-  return `完成 ${scheduleTasks.length} 个安排任务和 ${elapsedChallenges.length} 个经过时间挑战，共 ${total} 个任务，任务星 ${score}/${total}。请孩子说一遍先跳整小时、再算剩下分钟，再点“重新开始”再玩一轮。`;
+export function getTimeSchedulerCompletionSummary(
+  score: number,
+  scheduleTotal: number = scheduleTasks.length,
+  elapsedTotal: number = elapsedChallenges.length
+): string {
+  const total = scheduleTotal + elapsedTotal;
+  return `完成 ${scheduleTotal} 个安排任务和 ${elapsedTotal} 个经过时间挑战，共 ${total} 个任务，任务星 ${score}/${total}。请孩子说一遍先跳整小时、再算剩下分钟，再点“重新开始”再玩一轮。`;
 }
 
-function createCompletionCard(summary: string, score: number, onRestart: () => void, onExit: () => void): HTMLElement {
-  const total = scheduleTasks.length + elapsedChallenges.length;
+function createCompletionCard(
+  summary: string,
+  score: number,
+  scheduleTotal: number,
+  elapsedTotal: number,
+  onRestart: () => void,
+  onExit: () => void
+): HTMLElement {
+  const total = scheduleTotal + elapsedTotal;
   const card = document.createElement("section");
   card.className = "learning-game__result learning-game__completion";
   const title = document.createElement("h3");
