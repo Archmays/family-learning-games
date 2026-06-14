@@ -64,6 +64,25 @@ describe("hanzi radical battle data", () => {
     expect(HANZI_RADICAL_COMBINATION_DB[combinationKey(["艹", "节"])]).toBeNull();
     expect(HANZI_RADICAL_COMBINATION_DB[combinationKey(["宀", "宅"])]).toBeNull();
   });
+
+  it("keeps unordered duplicate combination groups limited to known intentional cases", () => {
+    const groups = new Map<string, number>();
+    for (const entry of HANZI_RADICAL_COMBINATION_ENTRIES) {
+      const key = combinationKey(entry.parts);
+      groups.set(key, (groups.get(key) ?? 0) + 1);
+    }
+
+    const duplicateKeys = [...groups.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([key]) => key)
+      .sort();
+
+    expect(duplicateKeys).toEqual([
+      combinationKey(["几", "木"]),
+      combinationKey(["口", "木"]),
+      combinationKey(["心", "相"])
+    ].sort());
+  });
 });
 
 describe("hanzi radical battle rules", () => {
@@ -110,6 +129,17 @@ describe("hanzi radical battle rules", () => {
     expect(getHanziRadicalCombination(["日", "月"])?.char).toBe("明");
     expect(getHanziRadicalCombination(["忄", "青"])?.char).toBe("情");
     expect(getHanziRadicalCombination(["钅", "帛"])?.char).toBe("锦");
+  });
+
+  it("includes small missing drawable combination fixes", () => {
+    expect(getHanziRadicalCombination(["氵", "分"])?.char).toBe("汾");
+    expect(getHanziRadicalCombination(["氵", "肖"])?.char).toBe("消");
+    expect(getHanziRadicalCombination(["米", "分"])?.char).toBe("粉");
+    expect(getHanziRadicalCombination(["扌", "召"])?.char).toBe("招");
+    expect(getHanziRadicalCombination(["日", "召"])?.char).toBe("昭");
+    expect(getHanziRadicalCombination(["木", "兆"])?.char).toBe("桃");
+    expect(getHanziRadicalCombination(["口", "包"])?.char).toBe("咆");
+    expect(getHanziRadicalCombination(["木", "肖"])?.char).toBe("梢");
   });
 
   it("calculates hero bonus and weakness damage", () => {
