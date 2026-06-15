@@ -14,6 +14,10 @@ import {
   type HanziRadicalMonster,
   type HanziRadicalStructure
 } from "./game-data";
+import {
+  getHanziRadicalVisualHint,
+  type HanziRadicalVisualHint
+} from "./visual-hints";
 
 type HanziRadicalScene = "menu" | "charSelect" | "instructions" | "game";
 type HanziRadicalTurn = "player" | "enemy";
@@ -400,11 +404,15 @@ function mountHanziRadicalBattle(context: MountGameContext): MountedGame {
     }
 
     const rarity = getHanziRadicalRarity(comboResult.type);
+    const selectedParts = selectedIndices.map((index) => hand[index].char);
+    const visualHint = getHanziRadicalVisualHint(comboResult, selectedParts);
     const attack = document.createElement("button");
     attack.type = "button";
     attack.className = `hanzi-radical-attack-preview hanzi-radical-attack-preview--${rarity}`;
     attack.addEventListener("click", handleAttack);
 
+    const text = document.createElement("div");
+    text.className = "hanzi-radical-attack-preview__text";
     const struct = document.createElement("span");
     struct.className = "hanzi-radical-structure";
     struct.textContent = getStructureLabel(comboResult.struct);
@@ -415,7 +423,8 @@ function mountHanziRadicalBattle(context: MountGameContext): MountedGame {
     if (currentMonster.weakness !== "none" && comboResult.type === currentMonster.weakness) {
       detail.textContent += " · 克制!";
     }
-    attack.append(struct, char, detail);
+    text.append(struct, char, detail);
+    attack.append(createHanziRadicalVisualCard(visualHint), text);
     panel.append(attack);
     return panel;
   };
@@ -1026,6 +1035,45 @@ function createModal(titleText: string, onClose: () => void): HTMLElement {
   panel.append(header, body);
   overlay.append(panel);
   return overlay;
+}
+
+function createHanziRadicalVisualCard(hint: HanziRadicalVisualHint): HTMLElement {
+  const card = document.createElement("div");
+  card.className = "hanzi-radical-visual";
+
+  const art = document.createElement("div");
+  art.className = "hanzi-radical-visual__art";
+
+  const image = document.createElement("img");
+  image.className = "hanzi-radical-visual__image";
+  image.src = hint.imageSrc;
+  image.alt = hint.imageAlt;
+  image.loading = "lazy";
+  image.decoding = "async";
+  art.append(image);
+
+  const formula = document.createElement("div");
+  formula.className = "hanzi-radical-visual__formula";
+  appendVisualFormula(formula, hint.formula);
+
+  const label = document.createElement("strong");
+  label.className = "hanzi-radical-visual__label";
+  label.textContent = hint.label;
+
+  card.append(art, formula, label);
+
+  return card;
+}
+
+function appendVisualFormula(target: HTMLElement, formula: readonly string[]): void {
+  for (let index = 0; index < formula.length; index += 1) {
+    if (index > 0) {
+      target.append(document.createTextNode(index === formula.length - 1 ? " = " : " + "));
+    }
+    const part = document.createElement("span");
+    part.textContent = formula[index];
+    target.append(part);
+  }
 }
 
 function getStructureLabel(structure: HanziRadicalStructure): string {

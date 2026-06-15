@@ -168,6 +168,10 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
       grid.append(button);
     }
 
+    const playArea = document.createElement("div");
+    playArea.className = "memory-card-game__play-area";
+    playArea.append(grid, createRevealPanel(matchedPairs, activePairs.length));
+
     const controls = document.createElement("div");
     controls.className = "memory-card-game__controls";
     controls.append(
@@ -176,7 +180,7 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
       })
     );
 
-    root.append(header, gradeControls, stats, grid, controls);
+    root.append(header, gradeControls, stats, playArea, controls);
 
     if (matchedPairs === activePairs.length) {
       const done = document.createElement("div");
@@ -194,6 +198,44 @@ function mountMemoryCard(context: MountGameContext): MountedGame {
       root.remove();
     }
   };
+}
+
+function createRevealPanel(matchedPairs: number, totalPairs: number): HTMLElement {
+  const panel = document.createElement("aside");
+  panel.className = "memory-card-reveal";
+  panel.setAttribute("aria-label", `奖励图进度 ${matchedPairs}/${totalPairs}`);
+
+  const header = document.createElement("div");
+  header.className = "memory-card-reveal__header";
+  const title = document.createElement("strong");
+  title.textContent = "奖励图";
+  const progress = document.createElement("span");
+  progress.textContent = `${matchedPairs}/${totalPairs}`;
+  header.append(title, progress);
+
+  const picture = document.createElement("div");
+  picture.className = "memory-card-reveal__picture";
+
+  const states = getMemoryRevealTileStates(matchedPairs, totalPairs);
+  for (let index = 0; index < states.length; index += 1) {
+    const tile = document.createElement("span");
+    tile.className = states[index] ? "memory-card-reveal__tile is-revealed" : "memory-card-reveal__tile";
+    tile.textContent = String(index + 1);
+    tile.setAttribute("aria-hidden", "true");
+    picture.append(tile);
+  }
+
+  const hint = document.createElement("p");
+  hint.textContent = "每找到一对，就揭开一块画面。";
+
+  panel.append(header, picture, hint);
+  return panel;
+}
+
+export function getMemoryRevealTileStates(matchedPairs: number, totalPairs: number): boolean[] {
+  const safeTotal = Math.max(0, Math.floor(totalPairs));
+  const safeMatched = Math.max(0, Math.min(safeTotal, Math.floor(matchedPairs)));
+  return Array.from({ length: safeTotal }, (_, index) => index < safeMatched);
 }
 
 function createDeck(pairs: readonly MemoryCardPair[]): CardState[] {
