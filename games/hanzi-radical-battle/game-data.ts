@@ -4247,6 +4247,7 @@ const HANZI_RADICAL_WHEEL_COMBINATION_ENTRIES = [
   { parts: ["犭", "青"], result: { char: "猜", power: 15, desc: "猜想", type: "mind", struct: "lr" } },
   { parts: ["氵", "朝"], result: { char: "潮", power: 15, desc: "潮湿", type: "water", struct: "lr" } },
   { parts: ["讠", "寸"], result: { char: "讨", power: 15, desc: "讨论", type: "mind", struct: "lr" } },
+  { parts: ["讠", "乍"], result: { char: "诈", power: 15, desc: "识破假话", type: "mind", struct: "lr" } },
   { parts: ["路", "鸟"], result: { char: "鹭", power: 15, desc: "白鹭", type: "air", struct: "lr" } },
   { parts: ["口", "耆"], result: { char: "嗜", power: 15, desc: "嗜好", type: "normal", struct: "lr" } },
   { parts: ["匚", "甲"], result: { char: "匣", power: 15, desc: "镜匣", type: "defense", struct: "sur" } },
@@ -4631,3 +4632,9 @@ export function getHanziRadicalCombination(parts: readonly string[]): HanziRadic
 
   return null;
 }
+
+export {
+  HANZI_RADICAL_VISUAL_HINTS,
+  getHanziRadicalVisualHint,
+  type HanziRadicalVisualHint
+} from "./visual-hints";
