@@ -2065,6 +2065,19 @@ const HANZI_RADICAL_BASE_COMBINATION_ENTRIES = [
   },
   {
     parts: [
+      "𥫗",
+      "生"
+    ],
+    result: {
+      char: "笙",
+      power: 15,
+      desc: "乐器",
+      type: "sound",
+      struct: "tb"
+    }
+  },
+  {
+    parts: [
       "田",
       "心"
     ],
@@ -4314,6 +4327,7 @@ export const HANZI_RADICAL_DECK = [
   "艹",
   "宀",
   "⺮",
+  "𥫗",
   "心",
   "贝",
   "雨",

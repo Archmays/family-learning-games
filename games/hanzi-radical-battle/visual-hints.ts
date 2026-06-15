@@ -285,6 +285,7 @@ const HANZI_RADICAL_VISUAL_HINT_DATA = {
   "松": { formulaNote: "木 + 公 = 松", label: "松：松树", imageSrc: VISUAL_ASSET_BASE + "/u677e.png", imageAlt: "松树的儿童插图" },
   "宋": { formulaNote: "宀 + 木 = 宋", label: "宋：宋朝", imageSrc: VISUAL_ASSET_BASE + "/u5b8b.png", imageAlt: "宋：宋朝的儿童插图" },
   "送": { formulaNote: "辶 + 关 = 送", label: "送：赠送", imageSrc: VISUAL_ASSET_BASE + "/u9001.png", imageAlt: "送：赠送的儿童插图" },
+  "笙": { formulaNote: "𥫗 + 生 = 笙", label: "笙：乐器", imageSrc: VISUAL_ASSET_BASE + "/u7b19.png", imageAlt: "笙：传统乐器的儿童插图" },
   "笋": { formulaNote: "⺮ + 旬 = 笋", label: "笋：竹笋", imageSrc: VISUAL_ASSET_BASE + "/u7b0b.png", imageAlt: "笋：竹笋的儿童插图" },
   "他": { formulaNote: "亻 + 也 = 他", label: "他：他人", imageSrc: VISUAL_ASSET_BASE + "/u4ed6.png", imageAlt: "他：他人的儿童插图" },
   "她": { formulaNote: "女 + 也 = 她", label: "她：她", imageSrc: VISUAL_ASSET_BASE + "/u5979.png", imageAlt: "她：她的儿童插图" },
