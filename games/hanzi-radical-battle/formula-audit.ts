@@ -154,6 +154,7 @@ export const HANZI_RADICAL_FORMULA_AUDIT_ENTRIES = [
   { parts: ["⺮","匡"], status: "accepted", source: "existing", result: {"char":"筐","power":12,"desc":"竹筐","type":"normal","struct":"tb"} },
   { parts: ["⺮","间"], status: "accepted", source: "existing", result: {"char":"简","power":15,"desc":"简单","type":"normal","struct":"tb"} },
   { parts: ["⺮","旬"], status: "accepted", source: "existing", result: {"char":"笋","power":15,"desc":"竹笋","type":"wood","struct":"tb"} },
+  { parts: ["𥫗","生"], status: "accepted", source: "manual-audit", result: {"char":"笙","power":15,"desc":"乐器","type":"sound","struct":"tb"} },
   { parts: ["田","心"], status: "accepted", source: "existing", result: {"char":"思","power":15,"desc":"思考","type":"mind","struct":"tb"} },
   { parts: ["相","心"], status: "accepted", source: "existing", result: {"char":"想","power":15,"desc":"想念","type":"mind","struct":"tb"} },
   { parts: ["今","心"], status: "accepted", source: "existing", result: {"char":"念","power":15,"desc":"念书","type":"mind","struct":"tb"} },

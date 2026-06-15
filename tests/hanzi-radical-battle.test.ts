@@ -161,6 +161,13 @@ describe("hanzi radical battle rules", () => {
     expect(combo?.desc).toContain("假话");
   });
 
+  it("includes 𥫗 + 生 = 笙 in the playable formula table", () => {
+    const combo = getHanziRadicalCombination(["𥫗", "生"]);
+
+    expect(combo?.char).toBe("笙");
+    expect(combo?.desc).toBe("乐器");
+  });
+
   it("calculates hero bonus and weakness damage", () => {
     const combo = getHanziRadicalCombination(["氵", "工"]);
     expect(combo).toBeTruthy();

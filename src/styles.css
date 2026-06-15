@@ -250,15 +250,13 @@
 .hanzi-radical-monster-panel {
   position: relative;
   display: grid;
-  flex: 0 0 39%;
-  min-height: 210px;
+  flex: 0 0 36%;
+  min-height: 196px;
   place-items: center;
   overflow: hidden;
   border-bottom: 3px solid rgba(37, 49, 59, 0.12);
-  background:
-    radial-gradient(circle at 50% 78%, rgba(37, 49, 59, 0.12) 0 18%, transparent 19%),
-    linear-gradient(180deg, #fff7d7, #ffe7dd);
-  padding: 42px 14px 14px;
+  background: linear-gradient(180deg, #fff7d7, #ffe7dd);
+  padding: 36px 14px 12px;
 }
 
 .hanzi-radical-turn-badge {
@@ -287,7 +285,7 @@
   display: grid;
   justify-items: center;
   width: min(420px, 100%);
-  gap: 7px;
+  gap: 6px;
   color: #25313b;
   text-align: center;
   transition: transform 260ms ease-out, filter 260ms ease-out;
@@ -1556,13 +1554,13 @@
   }
 
   .hanzi-radical-monster-panel {
-    flex-basis: 36%;
-    min-height: 184px;
-    padding-top: 42px;
+    flex-basis: 34%;
+    min-height: 168px;
+    padding-top: 36px;
   }
 
   .hanzi-radical-monster__body {
-    width: min(112px, 20vh);
+    width: min(108px, 19vh);
   }
 
   .hanzi-radical-monster strong {
