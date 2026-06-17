@@ -12,7 +12,13 @@ export interface HanziRadicalVisualHint extends HanziRadicalVisualHintConfig {
   formula: readonly string[];
 }
 
-const VISUAL_ASSET_BASE = "/assets/hanzi-radical-battle/visuals";
+const RAW_APP_BASE_URL = import.meta.env.BASE_URL;
+const APP_BASE_URL = RAW_APP_BASE_URL === "/"
+  ? "./"
+  : RAW_APP_BASE_URL.endsWith("/")
+    ? RAW_APP_BASE_URL
+    : `${RAW_APP_BASE_URL}/`;
+const VISUAL_ASSET_BASE = `${APP_BASE_URL}assets/hanzi-radical-battle/visuals`;
 
 const HANZI_RADICAL_VISUAL_HINT_DATA = {
   "安": { formulaNote: "宀 + 女 = 安", label: "安：安全", imageSrc: VISUAL_ASSET_BASE + "/u5b89.png", imageAlt: "安：安全的儿童插图" },
