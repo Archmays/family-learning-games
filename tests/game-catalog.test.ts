@@ -107,4 +107,16 @@ describe("game catalog", () => {
       }
     }
   });
+
+  it("uses the correct component pair for 胆 in hanzi wheel", () => {
+    const badPair = hanziWheelSets
+      .flatMap((set) => set.char.validPairs)
+      .find((pair) => pair.outer === "月" && pair.inner === "胆" && pair.result === "胆");
+    const thirdGrade = hanziWheelSets.find((set) => set.id === "p3");
+
+    expect(badPair).toBeUndefined();
+    expect(thirdGrade?.char.validPairs).toContainEqual(
+      expect.objectContaining({ outer: "月", inner: "旦", result: "胆" })
+    );
+  });
 });

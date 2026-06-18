@@ -278,7 +278,7 @@ export const hanziWheelSets: HanziWheelSet[] = [
     id: "p3",
     label: "三年级",
     char: createHanziWheelMode([
-      { outer: "月", inner: "胆", result: "胆", pinyin: "dǎn", words: ["胆量"] },
+      { outer: "月", inner: "旦", result: "胆", pinyin: "dǎn", words: ["胆量"] },
       { outer: "月", inner: "巴", result: "肥", pinyin: "féi", words: ["肥胖"] },
       { outer: "月", inner: "要", result: "腰", pinyin: "yāo", words: ["腰带"] },
       { outer: "犭", inner: "王", result: "狂", pinyin: "kuáng", words: ["疯狂"] },
