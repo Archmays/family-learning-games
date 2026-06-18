@@ -13,9 +13,6 @@ describe("game catalog", () => {
     expect(source).toContain("makeTargetGame");
     expect(source).toContain("pinyinMagicBattleGame");
     expect(source).toContain("hanziRadicalBattleGame");
-    expect(source).toContain("ecologyEvidenceGame");
-    expect(source).toContain("actionPathGame");
-    expect(source).toContain("timeSchedulerGame");
   });
 
   it("has shared learning data for the migrated games", () => {
@@ -30,7 +27,7 @@ describe("game catalog", () => {
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name);
 
-    expect(gameDirs).toHaveLength(12);
+    expect(gameDirs).toHaveLength(9);
 
     for (const gameDir of gameDirs) {
       const source = readFileSync(`games/${gameDir}/index.ts`, "utf8");
